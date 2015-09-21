@@ -2,10 +2,12 @@
 
 The search for artificial intelligence
 
-current branch: stepOne-populateVars-finished
+current branch: stepTwo-buildingIntelligence
 
-git checkout stepOne-populateVars-finished
+git checkout stepTwo-buildingIntelligence
 
-completed filling out the vars.
-Built basic pseudo functionality
+
+Built basic real functionality.
+
+Four methods of increasing complexity demonstrated.
 

@@ -30,7 +30,9 @@ var humanMsg = "";//will hold the text (value) of the player input
 var computerMsg = "";//will hold the computer text displayed to the player each turn
 
 var genericResponses = [
-
+	"Good for you.",
+	"You are a loser.",
+	"I like you."
 ];//will be populated with messages to respond to the player
 
 //make the human input the focus when the page loads
@@ -54,11 +56,64 @@ function playGame() {
 	//let the games begin
 	//order of business:
 
-	//1. determine a random response
-	//2. update the text in the computer field to the new response
-	computer.innerHTML = "Yo";
-	//3. wipe the text in the player input field 
+	// //version1
+	// //1. determine a random response
+	// // responseNumber = Math.floor(Math.random()*genericResponses.length);
 
+	// //grab the message from the response array
+	// computerMsg = genericResponses[responseNumber];
+
+	// //2. update the text in the computer field to the new response
+	// computer.innerHTML = computerMsg;
+
+
+	// //version2
+	// //1. determine a random response
+	// newResponse = Math.floor(Math.random()*genericResponses.length);
+	// while (newResponse === responseNumber){
+	// 	newResponse = Math.floor(Math.random()*genericResponses.length);
+	// }
+	// responseNumber = newResponse;
+
+	// //grab the message from the response array
+	// computerMsg = genericResponses[responseNumber];
+	// //2. update the text in the computer field to the new response
+	// computer.innerHTML = computerMsg;
+
+
+	// //version3
+	// if (genericResponses.length >0){
+	// 	newResponse = Math.floor(Math.random()*genericResponses.length);
+	// 	responseNumber = newResponse;
+	// 	computer.innerHTML = genericResponses[responseNumber];
+	// 	genericResponses.splice(responseNumber,1);
+	// } else {
+	// 	computer.innerHTML = "I am done talking to you. You may leave now.";
+	// 	human.className="displayNone";
+	// 	button.className="displayNone";
+	// 	setTimeout(endGame,2000);
+	// }
+
+	// //version4
+	// humanMsg = (human.value).toLowerCase();
+	// if (humanMsg.indexOf("good") !== -1){
+	// 	computerMsg = "That is good for you.";
+	// }else if (humanMsg.indexOf("bad") !== -1){
+	// 	computerMsg = "You live a sad life.";
+	// }else {
+	// 	computerMsg = "You know nothing.";
+	// }
+	// computer.innerHTML = computerMsg;
+
+	//3. wipe the text in the player input field 
+	human.value = "";
+
+}
+
+function endGame(){
+	////.assign() leaves the back button working
+	////.replace() disables the back button by replacing the location in the history
+	location.assign("http://en.wikipedia.org/wiki/Electric_Dreams_(film)");
 }
 </script>
 </body>

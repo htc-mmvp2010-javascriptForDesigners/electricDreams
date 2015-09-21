@@ -2,4 +2,8 @@
 
 The search for artificial intelligence
 
-current branch: master
+current branch: stepOne-populateVars
+
+git checkout stepOne-populateVars
+
+

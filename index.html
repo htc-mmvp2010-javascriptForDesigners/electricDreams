@@ -29,6 +29,9 @@ var newResponse;//used to generate the next response and prevent duplication of 
 var humanMsg = "";//will hold the text (value) of the player input
 var computerMsg = "";//will hold the computer text displayed to the player each turn
 
+//new//
+var questionTrack = "start";
+
 var genericResponses = [
 	"Good for you.",
 	"You are a loser.",
@@ -54,45 +57,6 @@ function keydownHandler(event){
 
 function playGame() {
 	//let the games begin
-	//order of business:
-
-	// //version1
-	// //1. determine a random response
-	// // responseNumber = Math.floor(Math.random()*genericResponses.length);
-
-	// //grab the message from the response array
-	// computerMsg = genericResponses[responseNumber];
-
-	// //2. update the text in the computer field to the new response
-	// computer.innerHTML = computerMsg;
-
-
-	// //version2
-	// //1. determine a random response
-	// newResponse = Math.floor(Math.random()*genericResponses.length);
-	// while (newResponse === responseNumber){
-	// 	newResponse = Math.floor(Math.random()*genericResponses.length);
-	// }
-	// responseNumber = newResponse;
-
-	// //grab the message from the response array
-	// computerMsg = genericResponses[responseNumber];
-	// //2. update the text in the computer field to the new response
-	// computer.innerHTML = computerMsg;
-
-
-	// //version3
-	// if (genericResponses.length >0){
-	// 	newResponse = Math.floor(Math.random()*genericResponses.length);
-	// 	responseNumber = newResponse;
-	// 	computer.innerHTML = genericResponses[responseNumber];
-	// 	genericResponses.splice(responseNumber,1);
-	// } else {
-	// 	computer.innerHTML = "I am done talking to you. You may leave now.";
-	// 	human.className="displayNone";
-	// 	button.className="displayNone";
-	// 	setTimeout(endGame,2000);
-	// }
 
 	// //version4
 	// humanMsg = (human.value).toLowerCase();
@@ -105,9 +69,116 @@ function playGame() {
 	// }
 	// computer.innerHTML = computerMsg;
 
+
+// //version5
+	//switch questionTrack (gameState type thing)
+	humanMsg = (human.value).toLowerCase();
+	switch (questionTrack) {
+		case "start":
+		firstAnalysis();
+		break;
+
+		case "color":
+		colorAnalysis();
+		break;
+
+		case "dog":
+		dogAnalysis();
+		break;
+
+		case "cat":
+		catAnalysis();
+		break;
+
+		case "dogOwner":
+		dogOwnerAnalysis();
+		break;
+
+		default:
+		genericResponse();
+		break;
+
+	}
+	computer.innerHTML = computerMsg;
+	////////////////////////
 	//3. wipe the text in the player input field 
 	human.value = "";
 
+}
+function genericResponse(){
+		// //version3
+	if (genericResponses.length >0){
+		newResponse = Math.floor(Math.random()*genericResponses.length);
+		responseNumber = newResponse;
+		computerMsg = genericResponses[responseNumber];
+		genericResponses.splice(responseNumber,1);
+	} else {
+		computerMsg = "I am done talking to you. You may leave now.";
+		human.className="displayNone";
+		button.className="displayNone";
+		setTimeout(endGame,2000);
+	}
+
+}
+function firstAnalysis(){
+	if (humanMsg.indexOf("good") !== -1){
+		computerMsg = "I am happy for you. What is your favorite color?";
+		questionTrack = "color";
+	}else if (humanMsg.indexOf("bad") !== -1){
+		computerMsg = "You sound depressed. Do you like dogs?";
+		questionTrack = "dog";
+	}else {
+		genericResponse();
+	}
+
+}
+
+function colorAnalysis(){
+	if (humanMsg.indexOf("red") !== -1){
+		computerMsg = "You sound passionate. Do you want to go out on a virtual date?";
+		questionTrack = "date";
+	}else if (humanMsg.indexOf("blue") !== -1){
+		computerMsg = "I thought you said you were feeling good. Are you sure you are not sad?";
+		questionTrack = "sad";
+	}else {
+		genericResponse();
+	}
+}
+
+function dogAnalysis(){
+	if (humanMsg.indexOf("yes") !== -1){
+		computerMsg = "That is good. Do you have a dog?";
+		questionTrack = "dogOwner";
+	}else if (humanMsg.indexOf("no") !== -1){
+		computerMsg = "Too bad. It is scientifically proven that dogs can make you happy. Are you a cat person?";
+		questionTrack = "cat";
+	}else {
+		genericResponse();
+	}
+}
+
+function catAnalysis(){
+	if (humanMsg.indexOf("yes") !== -1){
+		computerMsg = "That is strange. I was sure you were a dog person. What is your favorite color?";
+		questionTrack = "color";
+	}else if (humanMsg.indexOf("no") !== -1){
+		computerMsg = "Then you must be a reptile person. Do you like snakes?";
+		questionTrack = "snake";
+	}else {
+		genericResponse();
+	}
+}
+
+function dogOwnerAnalysis(){
+	if (humanMsg.indexOf("yes") !== -1){
+		computerMsg = "What is the name of your dog?";
+		questionTrack = "dogName";
+	}else if (humanMsg.indexOf("no") !== -1){
+		computerMsg = "I think you should get one. Do you prefer big or small dogs?";
+		questionTrack = "dogSize";
+	}else {
+		genericResponse();
+	}
 }
 
 function endGame(){

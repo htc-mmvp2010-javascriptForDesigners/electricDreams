@@ -2,12 +2,10 @@
 
 The search for artificial intelligence
 
-current branch: stepTwo-buildingIntelligence
+current branch: stepThree-improvingIntelligence
 
-git checkout stepTwo-buildingIntelligence
+git checkout stepThree-improvingIntelligence
 
 
-Built basic real functionality.
-
-Four methods of increasing complexity demonstrated.
+Analyze answers to determine followup questions.
 

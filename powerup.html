@@ -6,8 +6,14 @@
 	<title>Power Up</title> -->
 
 	<style type="text/css">
-	/*style the computer text, input, and button*/
-	</style>
+        .displayNone {
+            display: none;
+        }
+        .displayBlock {
+            display: block;
+        }
+
+   </style>
 </head>
 
 <body>
@@ -482,7 +488,9 @@ function harmonicaAnalysis(){
 function powerAnalysis(){
 	if (humanMsg.indexOf("fly") !== -1){
 		computerMsg = "My fear of heights would keep me just a few feet from the ground...wouldn't be so super for me. Thanks for playing along.";
-		questionTrack = "fly";
+			human.className="displayNone";
+			button.className="displayNone";
+			setTimeout(endGame,2000);
 	}else if (humanMsg.indexOf("flight") !== -1){
 		computerMsg = "My fear of heights would keep me just a few feet from the ground...wouldn't be so super for me. Thanks for playing along.";
 		questionTrack = "thanks";
@@ -531,10 +539,10 @@ function flyAnalysis(){
 }
 
 
-// function endGame(){
+function endGame(){
 
-// 	location.assign("http://en.wikipedia.org/wiki/Electric_Dreams_(film)");
-// }
+	location.assign("http://en.wikipedia.org/wiki/Electric_Dreams_(film)");
+}
 
 </script>
 </body>

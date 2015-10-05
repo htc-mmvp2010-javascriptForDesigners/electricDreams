@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Electric Dreams</title>
+	<title>Life Analysis</title>
 
 	<style type="text/css">
 	/*style the computer text, input, and button*/
@@ -9,12 +9,198 @@
 </head>
 <body>
 <h1>Electric Dreams</h1>
-<p id = "computer">Hi, how are you today?</p>
-<input id = "human" type = "text" placeholder = "Type your response...">
-<button>Enter</button>
+<p id = "computer">Thank you for using the automated system, I'm Jane, your life-evaluation bot, please start by telling me how you're feeling today.</p>
+<input id = "human" type = "text" placeholder = "Type your response here...">
+<button>Advice</button>
 
 <script type="text/javascript">
 //your script here
+    
+    var computer = document.querySelector('#computer');
+    var human = document.getElementById('human');
+    var button = document.getElementsByTagName('button')[0];
+    var responseNumber;
+    var newResponse; //generate new response w/o dups
+    var humanMsg = "";
+    var janeMsg = "";
+    
+    var questionState = "start";
+    
+    var genericResponses = [
+            "Your wishy-washy attitude is going to get us all killed",
+        "I wish you were a more interesting person, however, you're not",
+        "Hey, here's a fun idea, how about you get more interesting?",
+        "If your responses weren't so boring, I could be enjoying myself right now",
+        "Just, stop, ok? Get off the computer and go outside",
+    
+        
+            
+        
+        
+        
+        ]//msgs to respond if nothing else
+    
+    human.focus(); //cursor ready for typing
+    
+    button.addEventListener("click", clickWatcher, false); //make computer 'listen' for a click, otherwise don't run clickWatcher
+    
+    function clickWatcher(){
+        playGame();
+    }
+    
+    window.addEventListener("keydown",keydownWatcher,false);
+    
+    function keydownWatcher(event){
+        if (event.keyCode ===13){
+                playGame();
+        }
+    }
+    
+    function playGame() {
+        humanMsg = (human.value).toLowerCase(); //put all responses in lower case, so only focus is on spelling
+        
+        //once 'playgame' has started, this will initiate a switch panel, which will determine which responses are displayed. You must start with the first analysis, based on your questionState at 'start'
+        
+        
+        switch(questionState){
+            case "start":
+                firstAnalysis();
+                break;   
+                
+            case "spice":
+                spiceAnalysis();
+                break;
+                
+            case "star":
+                starAnalysis();
+                break;
+                
+                
+                
+                
+                
+                
+                
+                
+                
+        }
+        
+        computer.innerHTML = janeMsg; //still in playGame, the
+        
+        human.value = "";
+        
+        
+    }
+    //  1.because genericResponses is an array,so 'if genericResponses is larger than the first one in the array, generate a new response. 
+    //  2.The new response is generated using said equation: Math(which says you are doing a mathematical equation, and has methods included in it).floor(which says that whatever is generated, round it down to the nearest integer):
+    //in parenthesis is what you are rounding down:
+    //math.random(generate a random number)and by saying *genericResponses.length, that random number must be kept within the length of the array in genericResponses
+   
+    function genericResponse(){
+        if (genericResponses.length > 0){ // 1.
+            newResponse =      // 2.
+    Math.floor(Math.random()*genericResponses.length);
+           responseNumber = newResponse;
+            janeMsg = genericResponses[responseNumber];
+            genericResponses.splice(responseNumber,1);
+            
+        }else{
+            janeMsg = "I am bored of you and your problems, go figure it out yourself.";
+            human.className = "displayNone";
+            button.className = "displayNone";
+            setTimeout(endGame,2000);
+            
+            }
+    }
+    
+    function firstAnalysis(){
+        if(humanMsg.indexOf("good") !==-1){
+         janeMsg = "Oh super, how wonderful for you. Why don't you go get a pumpkin spice latte and Snapchat it to your friends.    Just kidding, do you like pumpkin spice lattes?";
+            questionState = "spice";
+        }else if (humanMsg.indexOf("bored") !==-1){
+         janeMsg = "Welcome to the club, we may actually get along. Ok, who's your favorite Star Wars character?";
+            questionState = "star";
+        }else {
+            genericResponse();
+        }
+        }
+    
+    
+    function spiceAnalysis(){
+        if (humanMsg.indexOf("yes") !==-1){
+            janeMsg = "You would. Analysis complete: Everything in your life is super perfect, go instagram something, K? Thx bye";   
+            setTimeout(endGame,8000);
+        }else if (humanMsg.indexOf("no") !==-1){
+            janeMsg = "Yeah, you're probably more of a black coffee person, how classic of you. What a hipster. Analysis complete: Why don't you hop on your bicycle with your apple laptop in your custom leather messenger bag to the nearest coffee house serving organic light roast and get out of my face.";
+            setTimeout(endGame,10000);
+        }else if (humanMsg.indexOf("sometimes") !==-1){
+            janeMsg = "Sometimes? Well, 'sometimes' you should get out of my face with your wishy-washy attitude. Sometimes? Now-times.";
+            setTimeout(endGame,5000);
+        }else {
+            genericResponse();
+        }
+    }
+    
+    
+    function starAnalysis(){
+        if (humanMsg.indexOf("boba") !==-1){
+         janeMsg = "Boba Fett, good choice, very good choice. Analysis complete: You're great, and I like you.";
+        }else if (humanMsg.indexOf("solo") !==-1){
+         janeMsg = "Good choice, very classic. Analysis complete: You're great.";
+        }else if (humanMsg.indexOf("vader") !==-1){
+         janeMsg = "Hmm, the dark side, eh? Either you're a classic fan, or darth vader was the first one that popped into your head.";
+            }else if (humanMsg.indexOf("yoda") !==-1){
+         janeMsg = "A solid choice.";
+        }else if (humanMsg.indexOf("chew") !==-1){
+         janeMsg = "Oh, Chewbacca? Good for you, interesting choice.";
+        }else if (humanMsg.indexOf("jar") !==-1){
+         janeMsg = "No you didn't. No. You. Did. Not. He's your FAVORITE? Your favorite? Do you think my questions are a game? They are NOT.";
+            setTimeout(endGame,5000);
+        }else if (humanMsg.indexOf("luke") !==-1){
+         janeMsg = "Luke Skywalker? Very classic of you. That, or you've never seen Star Wars and that is the first person you could think of.";
+        }else if (humanMsg.indexOf("obi") !==-1){
+         janeMsg = "Very solid choice, good for you. Analysis complete: You are a great person, may you live forever.";
+        }else if (humanMsg.indexOf("gon") !==-1){
+         janeMsg = "jaba";
+            questionState = "The Hutt? Really? That's your favorite? Analysis complete: You have some issues that may require professional counceling";
+        }else if (humanMsg.indexOf("amidala") !==-1){
+         janeMsg = "Girl power, I see. Ok, she's pretty cool, I'll give it to you.";
+        }else if (humanMsg.indexOf("lando") !==-1){
+         janeMsg = "Lando Calrissian? Hmm, yeah, okay, he's pretty cool, but, out of all the characters, he's the one you pick? Analysis complete: You're an old-school, classic Star Wars hipster fan, choosing the outlier like that.";
+        }else if (humanMsg.indexOf("sidious") !==-1){
+         janeMsg = "Oh, yeah, you have problems. Huge problems. Who chooses Darth Sidious? Counceling. Now";
+        }else if (humanMsg.indexOf("maul") !==-1){
+         janeMsg = "Darth Maul. Alright, you're kind of a weird one, but he is pretty badass, and we'll see how he looks with a robotic lower half";
+        
+
+        }else {
+            genericResponse();
+        }
+    }
+    
+    
+    
+    
+    //  function Analysis(){
+      ////  if (humanMsg.indexOf("") !==-1){
+         j//aneMsg = "";
+            //questionState = "";
+            //
+        //}else if (humanMsg.indexOf("") !==-1){
+         //janeMsg = "";
+           // questionState = "";
+    //    }else {
+      //      genericResponse();
+    //    }
+//    }
+    
+    
+    function endGame(){
+     //.assign() back button works
+        //.replace() back button doesn't work, replaces location in history
+        location.assign("http://google.com");
+        
+    }
 
 </script>
 </body>

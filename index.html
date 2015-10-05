@@ -28,7 +28,7 @@
     
     var genericResponses = [
             "Your wishy-washy attitude is going to get us all killed",
-        "I wish you were a more interesting person, however, you're not",
+        "I wish you were a more interesting person, however, you're not, and that's sad. For YOU.",
         "Hey, here's a fun idea, how about you get more interesting?",
         "If your responses weren't so boring, I could be enjoying myself right now",
         "Just, stop, ok? Get off the computer and go outside",
@@ -74,6 +74,26 @@
             case "star":
                 starAnalysis();
                 break;
+            
+            case "bad":
+                badAnalysis();
+                break;
+                
+            case "badYes":
+                badYesAnalysis();
+                break;
+                
+            case "happy":
+                happyAnalysis();
+                break;
+                
+            case "happyYes":
+                happyYesAnalysis();
+                break;
+          
+            case "lost":
+                lostAnalysis();
+                break;
                 
                 
                 
@@ -105,7 +125,7 @@
             genericResponses.splice(responseNumber,1);
             
         }else{
-            janeMsg = "I am bored of you and your problems, go figure it out yourself.";
+            janeMsg = "I am bored of you and your problems, good day.";
             human.className = "displayNone";
             button.className = "displayNone";
             setTimeout(endGame,2000);
@@ -120,6 +140,14 @@
         }else if (humanMsg.indexOf("bored") !==-1){
          janeMsg = "Welcome to the club, we may actually get along. Ok, who's your favorite Star Wars character?";
             questionState = "star";
+                
+        }else if (humanMsg.indexOf("bad") !==-1){
+                janeMsg = "Oh boo-hoo, jerk. You think you're the only one having a bad time, don't you?";
+                questionState = "bad";
+        }else if (humanMsg.indexOf("happy") !==-1){
+            janeMsg = "Oh you're happy? What spectacular news! Do you consider yourself to be a happy person most days?";
+            questionState = "happy";
+            
         }else {
             genericResponse();
         }
@@ -171,19 +199,89 @@
          janeMsg = "Oh, yeah, you have problems. Huge problems. Who chooses Darth Sidious? Counceling. Now";
         }else if (humanMsg.indexOf("maul") !==-1){
          janeMsg = "Darth Maul. Alright, you're kind of a weird one, but he is pretty badass, and we'll see how he looks with a robotic lower half";
-        
-
-        }else {
+         }else {
             genericResponse();
         }
     }
+               
+    
+    
+    function badAnalysis(){
+       if (humanMsg.indexOf("yes") !==-1){
+         janeMsg = "Well, you are. You are literally the only person in the world right now having a bad day. Does that help you feel better?";
+            questionState = "badYes";
+            
+        }else if (humanMsg.indexOf("no") !==-1){
+         janeMsg = "Of course not, tell the computer program about your bad day. Oh wait, don't, because I don't care.";
+           setTimeout(endGame,5000);
+       }else {
+           genericResponse();
+       }
+   }
+                
+    
+  
+    function badYesAnalysis(){
+      if (humanMsg.indexOf("yes") !==-1){
+        janeMsg = "Well you're selfish and boring, that's why no one likes you.";
+            setTimeout(endGame,5000);
+            
+        }else if (humanMsg.indexOf("no") !==-1){
+         janeMsg = "Well well, look who needs their feelings to be coddled like a helpless infant child. Poor you, and your boring, stupid life. How about you go fly a kite through a beautiful field while you cry about your sad, sad life. I literally cannot listen to you complain any longer.";
+            setTimeout(endGame,10000);
+       }else {
+           genericResponse();
+    }
+  }
+    
+    
+    
+    function happyAnalysis(){
+      if (humanMsg.indexOf("yes") !==-1){
+        janeMsg = "Wow, how great for you. How wonderful it must be to wake up a shining ball of gladness, every day, for no particular reason. Why don't we all just tap our ruby slippers together, and head off to Candy Fluffy Teddybear Wonderland, and live in a state of lucid comatose happiness forever? Does that sound good to you?";
+            questionState = "happyYes";
+     }else if (humanMsg.indexOf("no") !==-1){
+         janeMsg = "Perhaps there's hope for you yet; it's good to have a healthy dose of angst and indifference to guide you through the sea of happiness, with all the people and their lattes and designer glasses, laughing and judging and talking about things. Where was I going with this?";
+            questionState = "lost";
+       }else {
+           genericResponse();
+    }
+  }
+    
+    
+    
+    
+    
+    function happyYesAnalysis(){
+      if (humanMsg.indexOf("no") !==-1){
+        janeMsg = "No, no it doesn't, does it pal? You better get your head out of that organic oxygen-bar mist that you've been in, and look reality in it's overworked, tired, cranky eye, and apologize for chipper attitude, because you, with your crazy do-it-yourself Pinterest ideas, are making it real difficult for a normal person to causally browse the internet, and not feel like the laziest person to ever walk the planet, just because they didn't make tiny little signs to top their color-cordinated cupcake decorations for their 1-year-old's birthday party. That's on YOU.";
+            
+        }else if (humanMsg.indexOf("yes") !==-1){
+         janeMsg = "Delusion is an unhealthy way to live your life.";
+            setTimeout(endGame,5000);
+       }else {
+           genericResponse();
+    }
+  }
+                
+    
+    
+    function lostAnalysis(){
+      if (humanMsg.indexOf("know") !==-1){
+        janeMsg = "Well, maybe you should have been paying more attention, my God, what good are you?";
+            setTimeout(endGame,5000);
+            
+       }else {
+           genericResponse();
+    }
+  }
     
     
     
     
     //  function Analysis(){
       ////  if (humanMsg.indexOf("") !==-1){
-         j//aneMsg = "";
+         //janeMsg = "";
             //questionState = "";
             //
         //}else if (humanMsg.indexOf("") !==-1){

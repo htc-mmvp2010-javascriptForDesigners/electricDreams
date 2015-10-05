@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- <meta name="author" content="Colleen Smith">
+	<meta name="description" content="ai">
+	<title>Power Up</title> -->
+
+	<style type="text/css">
+        .displayNone {
+            display: none;
+        }
+        .displayBlock {
+            display: block;
+        }
+
+   </style>
+</head>
+
+<body>
+
+<h1>Power Up</h1>
+
+<p id = "computer">Hi, how are you today?</p>
+<input id = "human" type = "text" placeholder = "Type your response...">
+<button>Enter</button>
+
+<script type="text/javascript">
+
+var computer = document.querySelector('#computer');
+
+var human = document.getElementById('human');
+var button = document.getElementsByTagName('button')[0];
+
+var responseNumber;//value of the response to display to the player
+var newResponse;//generate the next response and prevent duplication of responses
+var humanMsg = "";//will hold the text (value) of the player input
+var computerMsg = "";//will hold the computer text displayed to the player each turn
+
+var questionTrack = "start";
+var genericResponses = [
+	"You can't be serious!",
+	"Try harder next time.",
+	"I thought I liked you.",
+	"Guess that question was too tough for you."
+];
+
+human.focus();
+
+
+button.addEventListener("click",clickHandler,false);
+function clickHandler(){
+	playGame();
+}
+window.addEventListener("keydown",keydownHandler,false);
+function keydownHandler(event){
+	if (event.keyCode===13) {
+		playGame();
+	}
+}
+
+
+
+function playGame() {
+
+	humanMsg = (human.value).toLowerCase();
+	switch (questionTrack) {
+		case "start":
+		firstAnalysis();
+		break;
+
+		case "color":
+		colorAnalysis();
+		break;
+		case "red":
+		redAnalysis();
+		break;
+		case "blue":
+		blueAnalysis();
+		break;
+		case "green":
+		greenAnalysis();
+		break;
+		case "purple":
+		purpleAnalysis();
+		break;
+		case "violet":
+		violetAnalysis();
+		break;
+		case "shade":
+		shadeAnalysis();
+		break;
+		case "walk":
+		walkAnalysis();
+		break;
+
+		case "pet":
+		petAnalysis();
+		break;
+		case "legs":
+		legsAnalysis();
+		break;
+		case "name":
+		nameAnalysis();
+		break;
+		case "dogcat":
+		dogcatAnalysis();
+		break;
+		case "zero":
+		zeroAnalysis();
+		break;
+		case "which":
+		whichAnalysis();
+		break;
+		
+		case "instrument":
+		instrumentAnalysis();
+		break;
+		case "guitar":
+		guitarAnalysis();
+		break;
+		case "moreguitar":
+		moreguitarAnalysis();
+		break;
+		case "piano":
+		pianoAnalysis();
+		break;
+		case "drums":
+		drumAnalysis();
+		break;
+		case "harmonica":
+		harmonicaAnalysis();
+		break;
+		case "power":
+		powerAnalysis();
+		break;
+
+
+		default:
+		genericResponse();
+		break;
+	}
+
+	computer.innerHTML = computerMsg;
+	
+	
+	human.value = "";
+}
+
+function genericResponse(){
+
+	if (genericResponses.length >0){
+		newResponse = Math.floor(Math.random()*genericResponses.length);
+		responseNumber = newResponse;
+		computerMsg = genericResponses[responseNumber];
+		genericResponses.splice(responseNumber,1);
+	} else {
+		computerMsg = "I am done talking to you. You may leave now.";
+		human.className="displayNone";
+		button.className="displayNone";
+		setTimeout(endGame,2000);
+	}
+}
+
+function firstAnalysis(){
+	if (humanMsg.indexOf("good") !== -1){
+		computerMsg = "I am happy for you. What is your favorite color?";
+		questionTrack = "color";
+	}else if (humanMsg.indexOf("great") !== -1){
+		computerMsg = "Good for you! What is your favorite color?";
+		questionTrack = "color";
+	}else if (humanMsg.indexOf("wonderful") !== -1){
+		computerMsg = "Wish I was you! What is your favorite color?";
+		questionTrack = "color";
+	}else if (humanMsg.indexOf("excellent") !== -1){
+		computerMsg = "Bragger! What is your favorite color?";
+		questionTrack = "color";
+	}else if (humanMsg.indexOf("bad") !== -1){
+		computerMsg = "You sound depressed. Do you have a pet?";
+		questionTrack = "pet";
+	}else {
+		genericResponse();
+	}
+}
+
+function colorAnalysis(){
+	if (humanMsg.indexOf("red") !== -1){
+		computerMsg = "Bright like a fire truck or a little darker, like blood?";
+		questionTrack = "red";
+	}else if (humanMsg.indexOf("blue") !== -1){
+		computerMsg = "Aww. Just like my eyes, but boring. What's your favorite musical instrument?";
+		questionTrack = "instrument";
+	}else if (humanMsg.indexOf("yellow") !== -1){
+		computerMsg = "That's kind of weird. What's your favorite musical instrument?";
+		questionTrack = "instrument";
+	}else if (humanMsg.indexOf("orange") !== -1){
+		computerMsg = "That's kind of fruity, like you. What's your favorite musical instrument?";
+		questionTrack = "instrument";
+	}else if (humanMsg.indexOf("green") !== -1){
+		computerMsg = "Then you'd love my mold collection. Oh, did you mean more like grass or trees?";
+		questionTrack = "green";
+	}else if (humanMsg.indexOf("purple") !== -1){
+		computerMsg = "Would that be light like lavender or deeper like royalty?";
+		questionTrack = "shade";
+	}else if (humanMsg.indexOf("violet") !== -1){
+		computerMsg = "Violet? Don't hear that word very often. Did you mean purple?";
+		questionTrack = "violet";
+	}else if (humanMsg.indexOf("black") !== -1){
+		computerMsg = "Well that's depressing. Do you own a pet?";
+		questionTrack = "pet";
+	}else if (humanMsg.indexOf("white") !== -1){
+		computerMsg = "About as exciting as plain vanilla ice cream! What is your favorite musical instrument?";
+		questionTrack = "instrument";
+	}else {
+		genericResponse();
+	}
+}
+
+function redAnalysis(){
+	if (humanMsg.indexOf("bright") !== -1){	
+		computerMsg = "Oh good. You had me scared for a second. What is your favorite instrument?";
+		questionTrack = "instrument";
+	}else if (humanMsg.indexOf("truck") !== -1){
+		computerMsg = "Oh good. You had me scared for a second. What is your favorite instrument?";
+		questionTrack = "instrument";
+	}else if (humanMsg.indexOf("dark") !== -1){
+		computerMsg = "You're a little scary. Let's change the subject. What is your favorite instrument?";
+		questionTrack = "instrument";
+	}else if (humanMsg.indexOf("blood") !== -1){
+		computerMsg = "You're a little scary. Let's change the subject. What is your favorite instrument?";
+		questionTrack = "instrument";
+	}else {
+		genericResponse();
+	}
+}
+
+function greenAnalysis(){
+	if (humanMsg.indexOf("yes") !== -1){	
+		computerMsg = "Would you like to go for a walk in the woods with me?";
+		questionTrack = "walk";
+	}else if (humanMsg.indexOf("trees") !== -1){
+		computerMsg = "Would you like to go for a walk in the woods with me?";
+		questionTrack = "walk";
+	}else if (humanMsg.indexOf("grass") !== -1){
+		computerMsg = "Would you like to roll in the grass with me?";
+		questionTrack = "walk";
+	}else if (humanMsg.indexOf("no") !== -1){
+		computerMsg = "Whatever. What is your favorite instrument?";
+		questionTrack = "instrument";
+	}else {
+		genericResponse();
+	}
+}
+
+function purpleAnalysis(){
+	if (humanMsg.indexOf("light") !== -1){	
+		computerMsg = "Feminine but not girly, it's almost tolerable. What is your favorite instrument?";
+		questionTrack = "instrument";
+	}else if (humanMsg.indexOf("lavender") !== -1){
+		computerMsg = "Feminine but not girly, it's almost tolerable. What is your favorite instrument?";
+		questionTrack = "instrument";
+	}else if (humanMsg.indexOf("deep") !== -1){
+		computerMsg = "Okay, your highness. What is your favorite instrument?";
+		questionTrack = "instrument";
+	}else if (humanMsg.indexOf("royal") !== -1){
+		computerMsg = "Okay, your highness. What is your favorite instrument?";
+		questionTrack = "instrument";
+	}else {
+		genericResponse();
+	}
+}
+
+function violetAnalysis(){
+	if (humanMsg.indexOf("yes") !== -1){	
+		computerMsg = "You could have just said so. What is your favorite musical instrument?";
+		questionTrack = "instrument";
+	}else if (humanMsg.indexOf("no") !== -1){
+		computerMsg = "You leave me speechless. What is your favorite musical instrument?";
+		questionTrack = "instrument";
+	}else {
+		genericResponse();
+	}
+}
+
+function shadeAnalysis(){
+	if (humanMsg.indexOf("light") !== -1){	
+		computerMsg = "Feminine but not too girly, it's almost tolerable. What is your favorite instrument?";
+		questionTrack = "instrument";
+	}else if (humanMsg.indexOf("lavender") !== -1){
+		computerMsg = "Feminine but not too girly, it's almost tolerable. What is your favorite instrument?";
+		questionTrack = "instrument";
+	}else if (humanMsg.indexOf("deep") !== -1){
+		computerMsg = "Okay, your highness. What is your favorite instrument?";
+		questionTrack = "instrument";
+	}else if (humanMsg.indexOf("royal") !== -1){
+		computerMsg = "Okay, your highness. What is your favorite instrument?";
+		questionTrack = "instrument";
+	}else {
+		genericResponse();
+	}
+}
+
+function walkAnalysis(){
+	if (humanMsg.indexOf("yes") !== -1){
+		computerMsg = "Seriously, get a grip. What is your favorite musical instrument?";
+		questionTrack = "instrument";
+	}else if (humanMsg.indexOf("no") !== -1){
+		computerMsg = "I am almost disappointed. What is your favorite musical instrument?";
+		questionTrack = "instrument";
+	}else {
+		genericResponse();
+	}
+}
+
+function petAnalysis(){
+	if (humanMsg.indexOf("yes") !== -1){
+		computerMsg = "That is good. How many legs does your pet have?";
+		questionTrack = "legs";
+	}else if (humanMsg.indexOf("no") !== -1){
+		computerMsg = "Too bad. It is scientifically proven that pets can make you happy. What is your favorite musical instrument?";
+		questionTrack = "instrument";
+	}else {
+		genericResponse();
+	}
+}
+
+function legsAnalysis(){
+	if (humanMsg.indexOf("2") !== -1){
+		computerMsg = "Sad that you call that a pet. Let's move on. What is your favorite musical instrument?";
+		questionTrack = "instrument";
+	}else if (humanMsg.indexOf("4") !== -1){
+		computerMsg = "Do you have a dog or cat?";
+		questionTrack = "dogcat";
+	}else if (humanMsg.indexOf("8") !== -1){
+		computerMsg = "You're creapy!! Let's change the subject. What is your favorite musical instrument?";
+		questionTrack = "instrument";
+	}else if (humanMsg.indexOf("0") !== -1){
+		computerMsg = "Zero? Like a snake or fish?";
+		questionTrack = "zero";
+	}else if (humanMsg.indexOf("none") !== -1){
+		computerMsg = "Zero? Like a snake or fish?";
+		questionTrack = "zero";
+	}else if (humanMsg.indexOf("no") !== -1){
+		computerMsg = "Too bad. It is scientifically proven that pets can make you happy. What is your favorite musical instrument?";
+		questionTrack = "instrument";
+	}else {
+		genericResponse();
+	}
+}
+
+function dogcatAnalysis(){
+	if (humanMsg.indexOf("yes") !== -1){
+		computerMsg = "Well, which one is it?";
+		questionTrack = "which";
+	}else if (humanMsg.indexOf("dog") !== -1){
+		computerMsg = "I'm a dog-lover myself? What's your dog's name?";
+		questionTrack = "name";
+	}else if (humanMsg.indexOf("no") !== -1){
+		computerMsg = "Guess that would be too normal for you. What is your favorite musical instrument?";
+		questionTrack = "instrument";
+	}else if (humanMsg.indexOf("cat") !== -1){
+		computerMsg = "That's strange, you seem like a dog person. What is your favorite musical instrument?";
+		questionTrack = "instrument";
+	}else {
+		genericResponse();
+	}
+}
+
+function whichAnalysis(){
+	if (humanMsg.indexOf("dog") !== -1){
+		computerMsg = "Glad you figured it out. What's your dog's name?";
+		questionTrack = "name";
+	}else if (humanMsg.indexOf("cat") !== -1){
+		computerMsg = "That's strange, you seem like a dog person. What is your favorite musical instrument?";
+		questionTrack = "instrument";
+	}else {
+		genericResponse();
+	}
+}
+
+function nameAnalysis(){
+	if (humanMsg.indexOf("yes") !== -1){
+		computerMsg = "That's not a terrible name. What is your favorite musical instrument?";
+		questionTrack = "instrument";
+	}else {
+		genericResponse();
+	}
+}
+
+function instrumentAnalysis(){
+	if (humanMsg.indexOf("guitar") !== -1){
+		computerMsg = "Well, which one is it? Lead, bass or air?";
+		questionTrack = "guitar";
+	}else if (humanMsg.indexOf("drums") !== -1){
+		computerMsg = "Good choice! Are you a drummer?";
+		questionTrack = "drums";
+	}else if (humanMsg.indexOf("piano") !== -1){
+		computerMsg = "Tickling those ivories! Do you play?";
+		questionTrack = "piano";
+	}else if (humanMsg.indexOf("sax") !== -1){
+		computerMsg = "There is nothing like the smooth sound of a good saxophonist. If you could have 1 superpower, what would it be?";
+		questionTrack = "power";
+	}else if (humanMsg.indexOf("flute") !== -1){
+		computerMsg = "Too each his own. If you could have 1 superpower, what would it be?";
+		questionTrack = "power";
+	}else if (humanMsg.indexOf("harmonica") !== -1){
+		computerMsg = "That's an interesting choice. Can you play one?";
+		questionTrack = "harmonica";
+	}else if (humanMsg.indexOf("trumpet") !== -1){
+		computerMsg = "Not a bad choice. If you could have 1 superpower, what would it be?";
+		questionTrack = "power";
+	}else if (humanMsg.indexOf("fiddle") !== -1){
+		computerMsg = "Going to play you some country music. If you could have 1 superpower, what would it be?";
+		questionTrack = "power";
+	}else if (humanMsg.indexOf("violin") !== -1){
+		computerMsg = "A great instrument to fiddle with. If you could have 1 superpower, what would it be?";
+		questionTrack = "power";
+	}else if (humanMsg.indexOf("cow") !== -1){
+		computerMsg = "I can't believe you went there. Moving on. If you could have 1 superpower, what would it be?";
+		questionTrack = "power";
+	}else {
+		genericResponse();
+	}
+}
+
+function guitarAnalysis(){
+	if (humanMsg.indexOf("lead") !== -1){
+		computerMsg = "Acoustic or Electric?";
+		questionTrack = "moreguitar";
+	}else if (humanMsg.indexOf("bass") !== -1){
+		computerMsg = "I suppose six strings would be too much for someone like you. If you could have 1 superpower, what would it be?";
+		questionTrack = "power";
+	}else if (humanMsg.indexOf("air") !== -1){
+		computerMsg = "Thank goodness, noone can hear you play! If you could have 1 superpower, what would it be?";
+		questionTrack = "power";
+	}else {
+		genericResponse();
+	}
+}
+
+function moreguitarAnalysis(){
+	if (humanMsg.indexOf("acoustic") !== -1){
+		computerMsg = "I love the sound of an acounstic guitar. If you could have 1 superpower, what would it be? ";
+		questionTrack = "power";
+	}else if (humanMsg.indexOf("electric") !== -1){
+		computerMsg = "Rock just wouldn't be the same without it. If you could have 1 superpower, what would it be?";
+		questionTrack = "power";
+	}else {
+		genericResponse();
+	}
+}
+
+function drumsAnalysis(){
+	if (humanMsg.indexOf("yes") !== -1){
+		computerMsg = "Interesting. I doubt you could keep a beat. If you could have 1 superpower, what would it be? ";
+		questionTrack = "power";
+	}else if (humanMsg.indexOf("no") !== -1){
+		computerMsg = "I didn't think so. I doubt you could keep a beat. If you could have 1 superpower, what would it be?";
+		questionTrack = "power";
+	}else {
+		genericResponse();
+	}
+}
+
+function pianoAnalysis(){
+	if (humanMsg.indexOf("yes") !== -1){
+		computerMsg = "I wish I had learned. If you could have 1 superpower, what would it be? ";
+		questionTrack = "power";
+	}else if (humanMsg.indexOf("no") !== -1){
+		computerMsg = "Maybe you should learn. If you could have 1 superpower, what would it be?";
+		questionTrack = "power";
+	}else {
+		genericResponse();
+	}
+}
+
+function harmonicaAnalysis(){
+	if (humanMsg.indexOf("yes") !== -1){
+		computerMsg = "Looks like fun, especially making the train sound. If you could have 1 superpower, what would it be? ";
+		questionTrack = "power";
+	}else if (humanMsg.indexOf("no") !== -1){
+		computerMsg = "Don't feel bad, I can only make the train sound, sort of. If you could have 1 superpower, what would it be?";
+		questionTrack = "power";
+	}else {
+		genericResponse();
+	}
+}
+
+function powerAnalysis(){
+	if (humanMsg.indexOf("fly") !== -1){
+		computerMsg = "My fear of heights would keep me just a few feet from the ground...wouldn't be so super for me. Thanks for playing along.";
+			human.className="displayNone";
+			button.className="displayNone";
+			setTimeout(endGame,2000);
+	}else if (humanMsg.indexOf("flight") !== -1){
+		computerMsg = "My fear of heights would keep me just a few feet from the ground...wouldn't be so super for me. Thanks for playing along.";
+		questionTrack = "thanks";
+	}else if (humanMsg.indexOf("invisible") !== -1){
+		computerMsg = "Hmm, You'd be a lot easier to ignore then. Thanks for playing along.";
+		questionTrack = "invisible";
+	}else if (humanMsg.indexOf("invisibility") !== -1){
+		computerMsg = "Hmm, You'd be a lot easier to ignore then. Thanks for playing along.";
+		questionTrack = "invisible";
+	}else if (humanMsg.indexOf("vision") !== -1){
+		computerMsg = "That just sounds per...er...interesting. Thanks for playing along.";
+		questionTrack = "vision";
+	}else if (humanMsg.indexOf("time travel") !== -1){
+		computerMsg = "That just sounds perv...er...interesting. Thanks for playing along.";
+		questionTrack = "time";
+	}else if (humanMsg.indexOf("timetravel") !== -1){
+		computerMsg = "Good one. I'm not sure if I'd want to go back or ahead in time. Something to think about. Thanks for playing along.";
+		questionTrack = "time";
+	}else if (humanMsg.indexOf("telepath") !== -1){
+		computerMsg = "That's freaky. Were you reading my mind? Thanks for playing along.";
+		questionTrack = "telepathy";
+	}else if (humanMsg.indexOf("teleport") !== -1){
+		computerMsg = "Sure would save a bundle of gas. Thanks for playing along.";
+		questionTrack = "teleport";
+	}else if (humanMsg.indexOf("strong") !== -1){
+		computerMsg = "You could finally get that jar of pickles opened! Thanks for playing along.";
+		questionTrack = "strong";
+	}else if (humanMsg.indexOf("strength") !== -1){
+		computerMsg = "You could finally get that jar of pickles opened! Thanks for playing along.";
+		questionTrack = "strong";
+	}else {
+		genericResponse();
+	}
+}
+
+function flyAnalysis(){
+	if (humanMsg.indexOf("yes") !== -1){
+		computerMsg = "Looks like fun, especially making the train sound. If you could have 1 superpower, what would it be? ";
+		questionTrack = "power";
+	}else if (humanMsg.indexOf("no") !== -1){
+		computerMsg = "Don't feel bad, I can only make the train sound, sort of. If you could have 1 superpower, what would it be?";
+		questionTrack = "power";
+	}else {
+		genericResponse();
+	}
+}
+
+
+function endGame(){
+
+	location.assign("http://en.wikipedia.org/wiki/Electric_Dreams_(film)");
+}
+
+</script>
+</body>
+</html>

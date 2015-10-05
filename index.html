@@ -4,12 +4,24 @@
 	<title>Electric Dreams</title>
 
 	<style type="text/css">
+	body {text-align:center;background-image: url(background1.jpg);background-size: cover;font-family: 'Century Gothic', sans-serif;font-size: 36px}
+	nav {
+	background-color: #000000;
+	color: white;}
+	p {color: white;}
+	
+	
+	
+	
+	
 	/*style the computer text, input, and button*/
 	</style>
 </head>
 <body>
-<h1>Electric Dreams</h1>
-<p id = "computer">Hi, how are you today?</p>
+<nav>
+<h1>A Witchy Halloween </h1>
+</nav>
+<p id = "computer">Hello, I am Delphina the Witch, can I ask you a few questions?</p>
 <input id = "human" type = "text" placeholder = "Type your response...">
 <button>Enter</button>
 
@@ -28,11 +40,18 @@ var responseNumber;//used to store the value of the response to display to the p
 var newResponse;//used to generate the next response and prevent duplication of responses
 var humanMsg = "";//will hold the text (value) of the player input
 var computerMsg = "";//will hold the computer text displayed to the player each turn
+var questionTrack;
+
 
 var genericResponses = [
-	"Good for you.",
-	"You are a loser.",
-	"I like you."
+	"Well, here we go to the next question because you ended up in my Generic Responses....",
+	"Hmmmmmmmm.",
+	"Very interesting.",
+    "I see.",
+    "Oh Goodness!",
+    "Alrighty then."
+    
+
 ];//will be populated with messages to respond to the player
 
 //make the human input the focus when the page loads
@@ -58,61 +77,190 @@ function playGame() {
 
 	// //version1
 	// //1. determine a random response
-	// // responseNumber = Math.floor(Math.random()*genericResponses.length);
+	responseNumber = Math.floor(Math.random()*genericResponses.length);
 
 	// //grab the message from the response array
-	// computerMsg = genericResponses[responseNumber];
+	computerMsg = genericResponses[responseNumber];
 
 	// //2. update the text in the computer field to the new response
-	// computer.innerHTML = computerMsg;
+	computer.innerHTML = computerMsg;
 
 
 	// //version2
 	// //1. determine a random response
-	// newResponse = Math.floor(Math.random()*genericResponses.length);
-	// while (newResponse === responseNumber){
-	// 	newResponse = Math.floor(Math.random()*genericResponses.length);
-	// }
-	// responseNumber = newResponse;
+	newResponse = Math.floor(Math.random()*genericResponses.length);
+	while (newResponse === responseNumber){
+	newResponse = Math.floor(Math.random()*genericResponses.length);
+	}
+	responseNumber = newResponse;
 
 	// //grab the message from the response array
-	// computerMsg = genericResponses[responseNumber];
+	computerMsg = genericResponses[responseNumber];
 	// //2. update the text in the computer field to the new response
-	// computer.innerHTML = computerMsg;
+	computer.innerHTML = computerMsg;
 
 
 	// //version3
-	// if (genericResponses.length >0){
-	// 	newResponse = Math.floor(Math.random()*genericResponses.length);
-	// 	responseNumber = newResponse;
-	// 	computer.innerHTML = genericResponses[responseNumber];
-	// 	genericResponses.splice(responseNumber,1);
-	// } else {
-	// 	computer.innerHTML = "I am done talking to you. You may leave now.";
-	// 	human.className="displayNone";
-	// 	button.className="displayNone";
-	// 	setTimeout(endGame,2000);
-	// }
+	if (genericResponses.length >0){
+	 	newResponse = Math.floor(Math.random()*genericResponses.length);
+	 	responseNumber = newResponse;
+	 	computer.innerHTML = genericResponses[responseNumber];
+	 	genericResponses.splice(responseNumber,1);
+	 } else {
+	 	computer.innerHTML = "I am done talking to you. You may leave now.";
+	 	human.className="displayNone";
+	 	button.className="displayNone";
+	 	setTimeout(endGame,2000);
+	 }
 
 	// //version4
-	// humanMsg = (human.value).toLowerCase();
-	// if (humanMsg.indexOf("good") !== -1){
-	// 	computerMsg = "That is good for you.";
+	 //humanMsg = (human.value).toLowerCase();
+	 //if (humanMsg.indexOf("good") !== -1){
+	 	//computerMsg = "That is good for you.";
 	// }else if (humanMsg.indexOf("bad") !== -1){
-	// 	computerMsg = "You live a sad life.";
-	// }else {
-	// 	computerMsg = "You know nothing.";
-	// }
-	// computer.innerHTML = computerMsg;
+	 	//computerMsg = "You live a sad life.";
+	 //}else {
+	 	//computerMsg = "You know nothing.";
+	 //}
+	 //computer.innerHTML = computerMsg;
 
 	//3. wipe the text in the player input field 
+    
+    //version 5
+    humanMsg = (human.value).toLowerCase();
+    switch (questionTrack) {
+            case "welcome":
+            welcomeAnalysis();
+            break;
+            
+            case "like":
+            likeAnalysis();
+            break;
+            
+            case "treat":
+            treatAnalysis();
+            break;
+            
+            case "item":
+            itemAnalysis();
+            break;
+            
+            case "costume":
+            costumeAnalysis();
+            break;
+            
+            default:
+            genericResponse();
+            break;
+            
+    }
+    
+    computer.innerHTML = computerMsg;
+    
 	human.value = "";
 
 }
+    
+function genericResponses(){
+    if (genericResponses.length >0){
+        newResponse = Math.floor(Math.random()*genericResponses.length);
+        responseNumber = newResponse;
+        computerMsg = genericResponses[responseNumber];
+        genericResponses.splice(responseNumber,1);
+    } else {
+        computerMsg = "I am leaving now.";
+        human.className="displayNone";
+        button.className="displayNone";
+        setTimeout(endGame,2000);
+    }
+}
+function welcomeAnalysis(){
+	if (humanMsg.indexOf("yes") !== -1){
+		computerMsg = "Thank you, do you enjoy the Halloween Holiday?";
+		questionTrack = "like";
+	}else if (humanMsg.indexOf("no") !== -1){
+		computerMsg = "Well, that's just too bad! Do you like Halloween?";
+		questionTrack = "like";
+	}else {
+		genericResponse(0);
+	}
+}
+function likeAnalysis(){
+	if (humanMsg.indexOf("yes") !== -1){
+		computerMsg = "So do I, it's my favorite time of year! What is your favorite chocolate candy treat?";
+		questionTrack = "treat";
+	}else if (humanMsg.indexOf("no") !== -1){
+		computerMsg = "You sound like a party pooper! What is your favorite chocolate candy treat?";
+		questionTrack = "treat";
+	}else {
+		genericResponse(1);
+	}
+}
+function treatAnalysis(){
+	if (humanMsg.indexOf("Mars") !== -1){
+		computerMsg = "That is where I go for our Witch Expo every year! What items do you associate with witches?";
+		questionTrack = "item";
+	}else if (humanMsg.indexOf("Twix") !== -1){
+		computerMsg = "That is a good mix! What items do you associate with witches?";
+		questionTrack = "item";
+    }else if (humanMsg.indexOf("Tootsie") !== -1){
+		computerMsg = "They have been around since 1896, that was a good year! What items do you associate with witches?";
+		questionTrack = "item";
+    }else if (humanMsg.indexOf("M&M") !== -1){
+		computerMsg = "Mmmmmmmm! What items do you associate with witches?";
+		questionTrack = "item";
+    }else if (humanMsg.indexOf("Milky Way") !== -1){
+		computerMsg = "I prefer the Andromeda Galaxy myself! What items do you associate with witches?";
+		questionTrack = "item";
+    }else if (humanMsg.indexOf("Kit Kat") !== -1){
+		computerMsg = "My cats name is Kittie! What items do you associate with witches?";
+		questionTrack = "item";
+	}else {
+		genericResponse(2);
+	}
+}
+function itemAnalysis(){
+	if (humanMsg.indexOf("broom") !== -1){
+		computerMsg = "Actually, I drive a Rolls Royce Phantom. Are you dressing up for Halloween?";
+		questionTrack = "costume";
+	}else if (humanMsg.indexOf("hat") !== -1){
+		computerMsg = "I don't wear one, it comes off when I fly. Are you dressing up for Halloween?";
+		questionTrack = "costume";
+    }else if (humanMsg.indexOf("cat") !== -1){
+		computerMsg = "My cats name is Kittie. Are you dressing up for Halloween?";
+		questionTrack = "costume";
+    }else if (humanMsg.indexOf("wart") !== -1){
+		computerMsg = "I have a superb complexion!! Are you dressing up for Halloween?";
+		questionTrack = "costume";
+	}else if (humanMsg.indexOf("nose") !== -1){
+		computerMsg = "My father had a big nose. Are you dressing up for Halloween?";
+		questionTrack = "costume";
+	}else if (humanMsg.indexOf("cauldron") !== -1){
+		computerMsg = "I use a lot of ingredients! Are you dressing up for Halloween?";
+		questionTrack = "costume";
+    }else if (humanMsg.indexOf("wand") !== -1){
+		computerMsg = "I do have a few of those. Are you dressing up for Halloween?";
+		questionTrack = "costume";
+	}else {
+		genericResponse(3);
+	}
+}
+function costumeAnalysis(){
+	if (humanMsg.indexOf("yes") !== -1){
+		computerMsg = "Excellent, I hope you have fun!!";
+		questionTrack = "costume";
+	}else if (humanMsg.indexOf("no") !== -1){
+		computerMsg = "Maybe you should think about it. Go have a good time!";
+		questionTrack = "costume";
+	}else {
+		genericResponse(4);
+	}
+}
+    
 
 function endGame(){
-	////.assign() leaves the back button working
-	////.replace() disables the back button by replacing the location in the history
+	//.assign() leaves the back button working
+	//.replace() disables the back button by replacing the location in the history
 	location.assign("http://en.wikipedia.org/wiki/Electric_Dreams_(film)");
 }
 </script>

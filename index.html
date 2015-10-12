@@ -6,12 +6,19 @@
 	<style type="text/css">
 	/*style the computer text, input, and button*/
 	</style>
+        <link href="bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
+
+            <link href="bootstrap-3.3.5-dist/css/jumbotron-narrow.css" rel="stylesheet"> 
+
 </head>
 <body>
-<h1>Electric Dreams</h1>
-<p id = "computer">Thank you for using the automated system, I'm Jane, your life-evaluation bot, please start by telling me how you're feeling today.</p>
+<div class ="jumbotron">
+<h1>Life Analysis</h1>
+<p class ="lead" id = "computer">Thank you for using the automated system, I'm Jane, your life-evaluation bot, please start by telling me how you're feeling today.</p>
 <input id = "human" type = "text" placeholder = "Type your response here...">
-<button>Advice</button>
+<button class ="btn btn-lg btn-success">Advice</button>
+    
+    </div>
 
 <script type="text/javascript">
 //your script here
@@ -28,7 +35,7 @@
     
     var genericResponses = [
             "Your wishy-washy attitude is going to get us all killed",
-        "I wish you were a more interesting person, however, you're not, and that's sad. For YOU.",
+        "I wish you were a more interesting person, however, you're not, and that's sad for YOU.",
         "Hey, here's a fun idea, how about you get more interesting?",
         "If your responses weren't so boring, I could be enjoying myself right now",
         "Just, stop, ok? Get off the computer and go outside",
@@ -147,6 +154,12 @@
         }else if (humanMsg.indexOf("happy") !==-1){
             janeMsg = "Oh you're happy? What spectacular news! Do you consider yourself to be a happy person most days?";
             questionState = "happy";
+        }else if (humanMsg.indexOf("great") !==-1){
+            janeMsg = "Oh great! How super! Do you feel great most days?";
+            questionState = "happy";
+        }else if (humanMsg.indexOf("not so") !==-1){
+            janeMsg = "Oh, poor you. You must think you're the only person in the world having a bad time, don't you?";
+            questionState = "bad";
             
         }else {
             genericResponse();
@@ -156,7 +169,7 @@
     
     function spiceAnalysis(){
         if (humanMsg.indexOf("yes") !==-1){
-            janeMsg = "You would. Analysis complete: Everything in your life is super perfect, go instagram something, K? Thx bye";   
+            janeMsg = "You would. Analysis complete: Everything in your life is super perfect, go instagram something, K? Hashtag thx bye";   
             setTimeout(endGame,8000);
         }else if (humanMsg.indexOf("no") !==-1){
             janeMsg = "Yeah, you're probably more of a black coffee person, how classic of you. What a hipster. Analysis complete: Why don't you hop on your bicycle with your apple laptop in your custom leather messenger bag to the nearest coffee house serving organic light roast and get out of my face.";
@@ -174,7 +187,11 @@
         if (humanMsg.indexOf("boba") !==-1){
          janeMsg = "Boba Fett, good choice, very good choice. Analysis complete: You're great, and I like you.";
         }else if (humanMsg.indexOf("solo") !==-1){
-         janeMsg = "Good choice, very classic. Analysis complete: You're great.";
+         janeMsg = "Good choice, Han Solo is very classic. Analysis complete: You're great.";
+        }else if (humanMsg.indexOf("asoka") !==-1){
+            janeMsg = "You watch the Clone Wars? That's great, that's really spectacular, applause to you.";
+        }else if (humanMsg.indexOf("amidala") !==-1){
+            janeMsg = "Ok, she's a pretty good character, forming an alliance and getting into shootouts and becoming a senator. Ok, fair choice.";
         }else if (humanMsg.indexOf("vader") !==-1){
          janeMsg = "Hmm, the dark side, eh? Either you're a classic fan, or darth vader was the first one that popped into your head.";
             }else if (humanMsg.indexOf("yoda") !==-1){
@@ -183,16 +200,16 @@
          janeMsg = "Oh, Chewbacca? Good for you, interesting choice.";
         }else if (humanMsg.indexOf("jar") !==-1){
          janeMsg = "No you didn't. No. You. Did. Not. He's your FAVORITE? Your favorite? Do you think my questions are a game? They are NOT.";
-            setTimeout(endGame,5000);
+            setTimeout(jarEnd,5000);
         }else if (humanMsg.indexOf("luke") !==-1){
          janeMsg = "Luke Skywalker? Very classic of you. That, or you've never seen Star Wars and that is the first person you could think of.";
         }else if (humanMsg.indexOf("obi") !==-1){
-         janeMsg = "Very solid choice, good for you. Analysis complete: You are a great person, may you live forever.";
+         janeMsg = "Very solid choice, good for you. Analysis complete: You are a great person, may you live forever and be more powerful than anyone could have ever imagined.";
         }else if (humanMsg.indexOf("gon") !==-1){
          janeMsg = "jaba";
-            questionState = "The Hutt? Really? That's your favorite? Analysis complete: You have some issues that may require professional counceling";
-        }else if (humanMsg.indexOf("amidala") !==-1){
-         janeMsg = "Girl power, I see. Ok, she's pretty cool, I'll give it to you.";
+            janeMsg = "The Hutt? Really? That's your favorite? Analysis complete: You have some issues that may require professional counceling, some really gross, weird fetish things.";
+        }else if (humanMsg.indexOf("leia") !==-1){
+            janeMsg = "Princess Leia? Ok, are you just saying that because of the slave outfit? You sick individual, get you mind out of the gutter.";
         }else if (humanMsg.indexOf("lando") !==-1){
          janeMsg = "Lando Calrissian? Hmm, yeah, okay, he's pretty cool, but, out of all the characters, he's the one you pick? Analysis complete: You're an old-school, classic Star Wars hipster fan, choosing the outlier like that.";
         }else if (humanMsg.indexOf("sidious") !==-1){
@@ -254,10 +271,10 @@
     
     function happyYesAnalysis(){
       if (humanMsg.indexOf("no") !==-1){
-        janeMsg = "No, no it doesn't, does it pal? You better get your head out of that organic oxygen-bar mist that you've been in, and look reality in it's overworked, tired, cranky eye, and apologize for chipper attitude, because you, with your crazy do-it-yourself Pinterest ideas, are making it real difficult for a normal person to causally browse the internet, and not feel like the laziest person to ever walk the planet, just because they didn't make tiny little signs to top their color-cordinated cupcake decorations for their 1-year-old's birthday party. That's on YOU.";
+        janeMsg = "No, no it doesn't, does it pal? You better get your head out of that organic oxygen-bar mist that you've been in, and look reality in it's overworked, tired, cranky eye, and apologize for your chipper attitude, because you, with your crazy do-it-yourself Pinterest ideas, are making it REAL difficult for normal people to not feel bad for not having some kind of distressed, barnyard antique piece on their wall, or not embossing their own thank-you cards, or not adding little flags onto their homemade cupcakes, or creating their own toothpaste from scratch. That's on YOU, and your fairytale attitude of sparkling happiness.";
             
         }else if (humanMsg.indexOf("yes") !==-1){
-         janeMsg = "Delusion is an unhealthy way to live your life.";
+         janeMsg = "Well clearly you're delusional.";
             setTimeout(endGame,5000);
        }else {
            genericResponse();
@@ -297,7 +314,10 @@
      //.assign() back button works
         //.replace() back button doesn't work, replaces location in history
         location.assign("http://google.com");
-        
+        }
+    
+    function jarEnd(){
+        location.replace("http://starwars.wikia.com");
     }
 
 </script>

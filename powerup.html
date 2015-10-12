@@ -6,13 +6,34 @@
 	<title>Power Up</title> -->
 
 	<style type="text/css">
+
+		body {
+
+		background-color: rgb(200, 245, 245);
+		margin-left: 100px;
+		max-width: 960px;
+		font-size: 1.3em;
+		}
+
+		img {
+
+		float: clear;	
+		}
+
+		button {
+
+		font-size: 1.1em;	
+		background-color: blue;
+		color: white;		
+		}
+	
+
         .displayNone {
             display: none;
         }
         .displayBlock {
             display: block;
         }
-
    </style>
 </head>
 
@@ -20,22 +41,24 @@
 
 <h1>Power Up</h1>
 
+
 <p id = "computer">Hi, how are you today?</p>
+
+
+<img src="powerbg.png" width="531" height="450" alt="backgroundimage">
 <input id = "human" type = "text" placeholder = "Type your response...">
 <button>Enter</button>
 
+
+
 <script type="text/javascript">
-
 var computer = document.querySelector('#computer');
-
 var human = document.getElementById('human');
 var button = document.getElementsByTagName('button')[0];
-
 var responseNumber;//value of the response to display to the player
 var newResponse;//generate the next response and prevent duplication of responses
 var humanMsg = "";//will hold the text (value) of the player input
 var computerMsg = "";//will hold the computer text displayed to the player each turn
-
 var questionTrack = "start";
 var genericResponses = [
 	"You can't be serious!",
@@ -43,10 +66,7 @@ var genericResponses = [
 	"I thought I liked you.",
 	"Guess that question was too tough for you."
 ];
-
 human.focus();
-
-
 button.addEventListener("click",clickHandler,false);
 function clickHandler(){
 	playGame();
@@ -57,17 +77,12 @@ function keydownHandler(event){
 		playGame();
 	}
 }
-
-
-
 function playGame() {
-
 	humanMsg = (human.value).toLowerCase();
 	switch (questionTrack) {
 		case "start":
 		firstAnalysis();
 		break;
-
 		case "color":
 		colorAnalysis();
 		break;
@@ -92,7 +107,6 @@ function playGame() {
 		case "walk":
 		walkAnalysis();
 		break;
-
 		case "pet":
 		petAnalysis();
 		break;
@@ -133,21 +147,16 @@ function playGame() {
 		case "power":
 		powerAnalysis();
 		break;
-
-
 		default:
 		genericResponse();
 		break;
 	}
-
 	computer.innerHTML = computerMsg;
 	
 	
 	human.value = "";
 }
-
 function genericResponse(){
-
 	if (genericResponses.length >0){
 		newResponse = Math.floor(Math.random()*genericResponses.length);
 		responseNumber = newResponse;
@@ -157,10 +166,9 @@ function genericResponse(){
 		computerMsg = "I am done talking to you. You may leave now.";
 		human.className="displayNone";
 		button.className="displayNone";
-		setTimeout(endGame,2000);
+		setTimeout(endGame,3000);
 	}
 }
-
 function firstAnalysis(){
 	if (humanMsg.indexOf("good") !== -1){
 		computerMsg = "I am happy for you. What is your favorite color?";
@@ -181,7 +189,6 @@ function firstAnalysis(){
 		genericResponse();
 	}
 }
-
 function colorAnalysis(){
 	if (humanMsg.indexOf("red") !== -1){
 		computerMsg = "Bright like a fire truck or a little darker, like blood?";
@@ -214,7 +221,6 @@ function colorAnalysis(){
 		genericResponse();
 	}
 }
-
 function redAnalysis(){
 	if (humanMsg.indexOf("bright") !== -1){	
 		computerMsg = "Oh good. You had me scared for a second. What is your favorite instrument?";
@@ -232,7 +238,6 @@ function redAnalysis(){
 		genericResponse();
 	}
 }
-
 function greenAnalysis(){
 	if (humanMsg.indexOf("yes") !== -1){	
 		computerMsg = "Would you like to go for a walk in the woods with me?";
@@ -250,7 +255,6 @@ function greenAnalysis(){
 		genericResponse();
 	}
 }
-
 function purpleAnalysis(){
 	if (humanMsg.indexOf("light") !== -1){	
 		computerMsg = "Feminine but not girly, it's almost tolerable. What is your favorite instrument?";
@@ -268,7 +272,6 @@ function purpleAnalysis(){
 		genericResponse();
 	}
 }
-
 function violetAnalysis(){
 	if (humanMsg.indexOf("yes") !== -1){	
 		computerMsg = "You could have just said so. What is your favorite musical instrument?";
@@ -280,7 +283,6 @@ function violetAnalysis(){
 		genericResponse();
 	}
 }
-
 function shadeAnalysis(){
 	if (humanMsg.indexOf("light") !== -1){	
 		computerMsg = "Feminine but not too girly, it's almost tolerable. What is your favorite instrument?";
@@ -298,7 +300,6 @@ function shadeAnalysis(){
 		genericResponse();
 	}
 }
-
 function walkAnalysis(){
 	if (humanMsg.indexOf("yes") !== -1){
 		computerMsg = "Seriously, get a grip. What is your favorite musical instrument?";
@@ -310,7 +311,6 @@ function walkAnalysis(){
 		genericResponse();
 	}
 }
-
 function petAnalysis(){
 	if (humanMsg.indexOf("yes") !== -1){
 		computerMsg = "That is good. How many legs does your pet have?";
@@ -322,7 +322,6 @@ function petAnalysis(){
 		genericResponse();
 	}
 }
-
 function legsAnalysis(){
 	if (humanMsg.indexOf("2") !== -1){
 		computerMsg = "Sad that you call that a pet. Let's move on. What is your favorite musical instrument?";
@@ -346,7 +345,6 @@ function legsAnalysis(){
 		genericResponse();
 	}
 }
-
 function dogcatAnalysis(){
 	if (humanMsg.indexOf("yes") !== -1){
 		computerMsg = "Well, which one is it?";
@@ -364,7 +362,6 @@ function dogcatAnalysis(){
 		genericResponse();
 	}
 }
-
 function whichAnalysis(){
 	if (humanMsg.indexOf("dog") !== -1){
 		computerMsg = "Glad you figured it out. What's your dog's name?";
@@ -376,7 +373,6 @@ function whichAnalysis(){
 		genericResponse();
 	}
 }
-
 function nameAnalysis(){
 	if (humanMsg.indexOf("yes") !== -1){
 		computerMsg = "That's not a terrible name. What is your favorite musical instrument?";
@@ -385,7 +381,6 @@ function nameAnalysis(){
 		genericResponse();
 	}
 }
-
 function instrumentAnalysis(){
 	if (humanMsg.indexOf("guitar") !== -1){
 		computerMsg = "Well, which one is it? Lead, bass or air?";
@@ -421,7 +416,6 @@ function instrumentAnalysis(){
 		genericResponse();
 	}
 }
-
 function guitarAnalysis(){
 	if (humanMsg.indexOf("lead") !== -1){
 		computerMsg = "Acoustic or Electric?";
@@ -430,13 +424,12 @@ function guitarAnalysis(){
 		computerMsg = "I suppose six strings would be too much for someone like you. If you could have 1 superpower, what would it be?";
 		questionTrack = "power";
 	}else if (humanMsg.indexOf("air") !== -1){
-		computerMsg = "Thank goodness, noone can hear you play! If you could have 1 superpower, what would it be?";
+		computerMsg = "Thank goodness, then noone can hear you play! If you could have 1 superpower, what would it be?";
 		questionTrack = "power";
 	}else {
 		genericResponse();
 	}
 }
-
 function moreguitarAnalysis(){
 	if (humanMsg.indexOf("acoustic") !== -1){
 		computerMsg = "I love the sound of an acounstic guitar. If you could have 1 superpower, what would it be? ";
@@ -448,7 +441,6 @@ function moreguitarAnalysis(){
 		genericResponse();
 	}
 }
-
 function drumsAnalysis(){
 	if (humanMsg.indexOf("yes") !== -1){
 		computerMsg = "Interesting. I doubt you could keep a beat. If you could have 1 superpower, what would it be? ";
@@ -460,7 +452,6 @@ function drumsAnalysis(){
 		genericResponse();
 	}
 }
-
 function pianoAnalysis(){
 	if (humanMsg.indexOf("yes") !== -1){
 		computerMsg = "I wish I had learned. If you could have 1 superpower, what would it be? ";
@@ -472,7 +463,6 @@ function pianoAnalysis(){
 		genericResponse();
 	}
 }
-
 function harmonicaAnalysis(){
 	if (humanMsg.indexOf("yes") !== -1){
 		computerMsg = "Looks like fun, especially making the train sound. If you could have 1 superpower, what would it be? ";
@@ -484,66 +474,72 @@ function harmonicaAnalysis(){
 		genericResponse();
 	}
 }
-
 function powerAnalysis(){
 	if (humanMsg.indexOf("fly") !== -1){
 		computerMsg = "My fear of heights would keep me just a few feet from the ground...wouldn't be so super for me. Thanks for playing along.";
 			human.className="displayNone";
 			button.className="displayNone";
-			setTimeout(endGame,2000);
+			setTimeout(endGame,3000);
 	}else if (humanMsg.indexOf("flight") !== -1){
 		computerMsg = "My fear of heights would keep me just a few feet from the ground...wouldn't be so super for me. Thanks for playing along.";
-		questionTrack = "thanks";
+			human.className="displayNone";
+			button.className="displayNone";
+			setTimeout(endGame,3000);
 	}else if (humanMsg.indexOf("invisible") !== -1){
 		computerMsg = "Hmm, You'd be a lot easier to ignore then. Thanks for playing along.";
-		questionTrack = "invisible";
+			human.className="displayNone";
+			button.className="displayNone";
+			setTimeout(endGame,3000);
 	}else if (humanMsg.indexOf("invisibility") !== -1){
 		computerMsg = "Hmm, You'd be a lot easier to ignore then. Thanks for playing along.";
-		questionTrack = "invisible";
+			human.className="displayNone";
+			button.className="displayNone";
+			setTimeout(endGame,3000);
 	}else if (humanMsg.indexOf("vision") !== -1){
 		computerMsg = "That just sounds per...er...interesting. Thanks for playing along.";
-		questionTrack = "vision";
+			human.className="displayNone";
+			button.className="displayNone";
+			setTimeout(endGame,3000);
 	}else if (humanMsg.indexOf("time travel") !== -1){
 		computerMsg = "That just sounds perv...er...interesting. Thanks for playing along.";
-		questionTrack = "time";
+			human.className="displayNone";
+			button.className="displayNone";
+			setTimeout(endGame,3000);
 	}else if (humanMsg.indexOf("timetravel") !== -1){
-		computerMsg = "Good one. I'm not sure if I'd want to go back or ahead in time. Something to think about. Thanks for playing along.";
-		questionTrack = "time";
+		computerMsg = "Good one. But the real decision is back or forward... Thanks for playing along.";
+			human.className="displayNone";
+			button.className="displayNone";
+			setTimeout(endGame,3000);
 	}else if (humanMsg.indexOf("telepath") !== -1){
 		computerMsg = "That's freaky. Were you reading my mind? Thanks for playing along.";
-		questionTrack = "telepathy";
+			human.className="displayNone";
+			button.className="displayNone";
+			setTimeout(endGame,3000);
 	}else if (humanMsg.indexOf("teleport") !== -1){
 		computerMsg = "Sure would save a bundle of gas. Thanks for playing along.";
-		questionTrack = "teleport";
+			human.className="displayNone";
+			button.className="displayNone";
+			setTimeout(endGame,3000);
 	}else if (humanMsg.indexOf("strong") !== -1){
 		computerMsg = "You could finally get that jar of pickles opened! Thanks for playing along.";
-		questionTrack = "strong";
+			human.className="displayNone";
+			button.className="displayNone";
+			setTimeout(endGame,3000);
 	}else if (humanMsg.indexOf("strength") !== -1){
 		computerMsg = "You could finally get that jar of pickles opened! Thanks for playing along.";
-		questionTrack = "strong";
+			human.className="displayNone";
+			button.className="displayNone";
+			setTimeout(endGame,3000);
 	}else {
 		genericResponse();
 	}
 }
 
-function flyAnalysis(){
-	if (humanMsg.indexOf("yes") !== -1){
-		computerMsg = "Looks like fun, especially making the train sound. If you could have 1 superpower, what would it be? ";
-		questionTrack = "power";
-	}else if (humanMsg.indexOf("no") !== -1){
-		computerMsg = "Don't feel bad, I can only make the train sound, sort of. If you could have 1 superpower, what would it be?";
-		questionTrack = "power";
-	}else {
-		genericResponse();
-	}
-}
 
 
 function endGame(){
-
-	location.assign("http://en.wikipedia.org/wiki/Electric_Dreams_(film)");
+	location.assign("http://www.rd.com/true-stories/inspiring/real-super-powers/");
 }
-
 </script>
 </body>
 </html>

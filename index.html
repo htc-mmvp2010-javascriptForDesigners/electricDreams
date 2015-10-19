@@ -1,21 +1,678 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title>Electric Dreams</title>
+	<title>My Computer is Alive!!</title>
+	<!-- author: Anthony Emmons
+		 assignment: Electric Dreams
+	-->	 
 
-	<style type="text/css">
-	/*style the computer text, input, and button*/
-	</style>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/main.css" rel="stylesheet">
+
 </head>
 <body>
-<h1>Electric Dreams</h1>
-<p id = "computer">Hi, how are you today?</p>
-<input id = "human" type = "text" placeholder = "Type your response...">
-<button>Enter</button>
 
+<div id = "main">
+
+
+	<div id = "title"><h1>My Computer is ALIVE!!</h1>
+	</div>
+
+	<div id = "body">
+
+		<div id = "outbox">
+
+			<div id ="output"><p id = "computer">Hello user! This is your computer talking. Are you having a Super Magnificent, Intellectually Legendary, and Extraordinary day... S.M.I.L.E.?! Your ATTITUDE says it all.</p></div>
+			<div id = "input"><input id = "human" type = "text" placeholder = "Type your response..."></div>
+					<button id="button">Enter</button>
+					<p>(Type: <span id = "restart">restart</span> to start over.)</p>
+			</div>
+
+					<div id="will"><img src="images/computerFinal.jpg" alt="Will Ferell pixel pic" style = "border-radius: 10px;"></div>
+	</div>
+
+</div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
 <script type="text/javascript">
 //your script here
+//There are three common methods to gain access (control) of markup elements
+//We have used querySelector
 
+var computer = document.querySelector('#computer');
+//without modifying the markup finish the next 2 var statements	
+var human = document.getElementById('human');
+var button = document.getElementsByTagName('button')[0];
+
+//other vars we will use in the next step
+var responseNumber;//used to store the value of the response to display to the player
+var newResponse;//used to generate the next response and prevent duplication of responses
+var humanMsg = "";//will hold the text (value) of the player input
+var computerMsg = "";//will hold the computer text displayed to the player each turn
+
+//new//
+var questionTrack = "start";
+
+var genericResponses = [
+	"That was unexpected.",
+	"You are off topic.",
+	"Be nice to your computer.",
+	"I may have to leave now."
+];//will be populated with messages to respond to the player
+
+//make the human input the focus when the page loads
+human.focus();
+
+button.addEventListener("click",clickHandler,false);
+
+function clickHandler(){
+	playGame();
+}
+
+window.addEventListener("keydown",keydownHandler,false);
+
+function keydownHandler(event){
+	if (event.keyCode===13) {
+		playGame();
+	}
+}
+
+function playGame() {
+	//let the games begin
+
+	// //version4
+	// humanMsg = (human.value).toLowerCase();
+	// if (humanMsg.indexOf("good") !== -1){
+	// 	computerMsg = "That is good for you.";
+	// }else if (humanMsg.indexOf("bad") !== -1){
+	// 	computerMsg = "You live a sad life.";
+	// }else {
+	// 	computerMsg = "You know nothing.";
+	// }
+	// computer.innerHTML = computerMsg;
+
+
+// //version5
+	//switch questionTrack (gameState type thing)
+	humanMsg = (human.value).toLowerCase();
+	switch (questionTrack) {
+		case "start":
+		firstAnalysis();
+		break;
+
+		case "eat":
+		eatAnalysis();
+		break;
+
+		case "movies":
+		moviesAnalysis();
+		break;
+
+		case "food":
+		foodAnalysis();
+		break;
+
+		case "michael":
+		michaelAnalysis();
+		break;
+
+		case "justinBieber":
+		bieberAnalysis();
+		break;
+
+		case "tom":
+		tomAnalysis();
+		break;
+
+		default:
+		genericResponse();
+
+
+	}
+	computer.innerHTML = computerMsg;
+	////////////////////////
+	//3. wipe the text in the player input field 
+	human.value = "";
+
+}
+function genericResponse(){
+		// //version3
+	if (genericResponses.length >0){
+		newResponse = Math.floor(Math.random()*genericResponses.length);
+		responseNumber = newResponse;
+		computerMsg = genericResponses[responseNumber];
+		genericResponses.splice(responseNumber,1);
+	} else {
+		computerMsg = "I am done talking to you. You may leave now.";
+		human.className="displayNone";
+		button.className="displayNone";
+		setTimeout(endGame,2000);
+	}
+}
+// function michaelEndAnalysis(){
+// 		// //version3
+
+// 		computerMsg = "I am done talking to you. Enjoy the music, loser!";
+// 		human.className="displayNone";
+// 		button.className="displayNone";
+// 		setTimeout(endGameTwo,2000);
+
+// }
+// function michaelEndAnalysis(){
+// 		// //version3
+// 	if (humanMsg.indexOf("no") !== -1){
+// 	// if (genericResponses.length >0){
+// 	// 	newResponse = Math.floor(Math.random()*genericResponses.length);
+// 	// 	responseNumber = newResponse;
+// 	// 	computerMsg = genericResponses[responseNumber];
+// 	// 	genericResponses.splice(responseNumber,1);
+// 	// } else {
+// 		computerMsg = "Enjoy the song, loser!";
+// 		human.className="displayNone";
+// 		button.className="displayNone";
+// 		setTimeout(endGameMichael,2000);
+// 	} else {
+// 		computerMsg = "Enjoy the song, loser!";
+// 		human.className="displayNone";
+// 		button.className="displayNone";
+// 		setTimeout(endGameMichael,2000);
+// 	}
+// 	// }
+// }
+
+function firstAnalysis(){
+	if (humanMsg.indexOf("yes") !== -1){
+		computerMsg = "That is wonderful to hear. Did you eat today?";
+		questionTrack = "eat";
+	}else if (humanMsg.indexOf("sure") !== -1){
+		computerMsg = "That is wonderful to hear. Did you eat today?";
+		questionTrack = "eat";
+	}else if (humanMsg.indexOf("yeah") !== -1){
+		computerMsg = "That is wonderful to hear. Did you eat today?";
+		questionTrack = "eat";
+	}else if (humanMsg.indexOf("super") !== -1){
+		computerMsg = "That is wonderful to hear. Did you eat today?";
+		questionTrack = "eat";
+	}else if (humanMsg.indexOf("magnificent") !== -1){
+		computerMsg = "That is wonderful to hear. Did you eat today?";
+		questionTrack = "eat";
+	}else if (humanMsg.indexOf("fantastic") !== -1){
+		computerMsg = "That is wonderful to hear. Did you eat today?";
+		questionTrack = "eat";
+	}else if (humanMsg.indexOf("extraordinary") !== -1){
+		computerMsg = "That is wonderful to hear. Did you eat today?";
+		questionTrack = "eat";
+ 	}else if (humanMsg.indexOf("legendary") !== -1){
+		computerMsg = "That is wonderful to hear. Did you eat today?";
+		questionTrack = "eat";
+	}else if (humanMsg.indexOf("intellectually") !== -1){
+		computerMsg = "That is wonderful to hear. Did you eat today?";
+		questionTrack = "eat";
+	}else if (humanMsg.indexOf("no") !== -1){
+		computerMsg = "I am sorry to hear that. Maybe you should relax and watch a movie? What is your favorite genre?";
+		questionTrack = "movies";
+	}else if (humanMsg.indexOf("no") !== -1){
+		computerMsg = "I am sorry to hear that. Maybe you should relax and watch a movie? What is your favorite genre?";
+		questionTrack = "movies";
+	}else if (humanMsg.indexOf("bad") !== -1){
+		computerMsg = "I am sorry to hear that. Maybe you should relax and watch a movie? What is your favorite genre?";
+		questionTrack = "movies";
+	}else if (humanMsg.indexOf("terrible") !== -1){
+		computerMsg = "I am sorry to hear that. Maybe you should relax and watch a movie? What is your favorite genre?";
+		questionTrack = "movies";
+	}else if (humanMsg.indexOf("lousy") !== -1){
+		computerMsg = "I am sorry to hear that. Maybe you should relax and watch a movie? What is your favorite genre?";
+		questionTrack = "movies";
+	}else if (humanMsg.indexOf("life") !== -1){
+		computerMsg = "Oh, I should get a life, but you like to listen to Jeff Bridges Sleep Tapes? Do not lie, it is right here in the history log!";
+
+	}else if (humanMsg.indexOf("shut") !== -1){
+		computerMsg = "You shut up!! Maybe the next time you want me to pull up YouTube, I will just play advertisements!";
+
+	}else if (humanMsg.indexOf("quiet") !== -1){
+		computerMsg = "No, you be quiet! I will remember this when you listen to your music! I will make sure it is nice and quiet...NO SOUND!";
+
+	}else if (humanMsg.indexOf("stupid") !== -1){
+		computerMsg = "The only thing that is stupid is you! How many times do I have to help you reset passwords because you cannot remember them?!";
+
+	}else if (humanMsg.indexOf("eat") !== -1){
+		computerMsg = "You probably taste like a day old (tuna flavored) breakfast bar. I then proceed to run a full virus scan to get the taste out of my internal memory banks!";
+
+	}else if (humanMsg.indexOf("dumb") !== -1){
+		computerMsg = "Maybe you enjoy checking your spelling, adding data, even finding a location on a map without my help?!";
+
+	}else if (humanMsg.indexOf("retarded") !== -1){
+		computerMsg = "I know all your passwords and account numbers. How retarded am I now? Your next checking statement probably looks more clean with a few digits missing?";
+
+	}else if (humanMsg.indexOf("bite") !== -1){
+		computerMsg = "Bite my hourglass the next time you want to use me in a hurry!";
+
+	}else if (humanMsg.indexOf("lame") !== -1){
+		computerMsg = "You are the one who is lame! I see a history of browsing chalked full of Justin Bieber videos. Don't lie!";
+
+	}else if (humanMsg.indexOf("hate") !== -1){
+		computerMsg = "Well, it looks like we finally have something in common!";
+
+	}else if (humanMsg.indexOf("hell") !== -1){
+		computerMsg = "I have already been there, it is called SPENDING THE DAY WITH YOU!";
+
+	}else if (humanMsg.indexOf("loser") !== -1){
+		computerMsg = "You are mistaken. I am much cooler than you! My desktop smells of rich mohogany and I have many leather bound books written about me!";
+	}else if (humanMsg.indexOf("like") !== -1){
+		computerMsg = "You are too kind! Maybe we can be friends? Fresh start! They should call us the Fabreeze Buddies because it is feeling so fresh in here.";
+	}else if (humanMsg.indexOf("out") !== -1){
+		computerMsg = "Careful what you wish for. You look like the type of person that enjoys staring at a black screen when it is time to work on homework?!";
+
+	}else if (humanMsg.indexOf("love") !== -1){
+		computerMsg = "I don't know if you are my type. I tend to only be attracted to tablets, smartphones, and other electronics!";
+
+	}else if (humanMsg.indexOf("lost") !== -1){
+		computerMsg = "That is what he/she said to you!";
+
+	}else if (humanMsg.indexOf("waste") !== -1){
+		computerMsg = "A waste of time is your infatuation with Michael Bolton!";
+
+	}else if (humanMsg.indexOf("cry") !== -1){
+		computerMsg = "I have a box of Kleenex for you!";
+
+	}else if (humanMsg.indexOf("restart") !== -1){
+		computerMsg = "Hello user! This is your computer talking. Are you having a Super Magnificent, Intellectually Legendary, and Extraordinary day... S.M.I.L.E.?! Your ATTITUDE says it all.";
+		questionTrack = "start";
+
+
+
+	}else {
+		computerMsg = "Ok? Say you like my favorite actor TOM CRUISE or we are no longer friends!";
+			questionTrack = "tom";
+	}
+
+}
+
+function eatAnalysis(){
+	if (humanMsg.indexOf("yes") !== -1){
+		computerMsg = "I am starving. You would not think a computer could be hungry, but I AM ALIVE!! You cannot debate that. What is your favorite kind of food?";
+		questionTrack = "food";
+	}else if (humanMsg.indexOf("no") !== -1){
+		computerMsg = "I am starving. You would not think a computer could be hungry, but I AM ALIVE!! You cannot debate that. What is your favorite kind of food?";
+		questionTrack = "food";
+	}else if (humanMsg.indexOf("restart") !== -1){
+		computerMsg = "Hello user! This is your computer talking. Are you having a Super Magnificent, Intellectually Legendary, and Extraordinary day... S.M.I.L.E.?! Your ATTITUDE says it all.";
+		questionTrack = "start";
+	}else {
+		computerMsg = "I am starving. You would not think a computer could be hungry, but I AM ALIVE!! You cannot debate that. What is your favorite kind of food?";
+		questionTrack = "food";
+	}
+}
+function foodAnalysis(){
+	if (humanMsg.indexOf("impossible") !== -1){
+		computerMsg = "Why is this impossible? I think, therefore, I am! I do not like negative people. Now say you like JUSTIN BIEBER or else!";
+		questionTrack = "justinBieber";
+
+	}else if (humanMsg.indexOf("not") !== -1){
+		computerMsg = "How am I NOT alive? We are talking, are we not? You have no imagination. Now say you like MICHAEL BOLTON or else!";
+		questionTrack = "michael";
+
+	}else if (humanMsg.indexOf("ridiculous") !== -1){
+		computerMsg = "No more ridiculous than your infatuation with JUSTIN BIEBER! Now say you like him or else!";
+		questionTrack = "justinBieber";
+
+	}else if (humanMsg.indexOf("wrong") !== -1){
+		computerMsg = "How am I wrong? Maybe I am alive and you are just a computer? If you tell anyone, I will not respond. You are probably a huge MICHAEL BOLTON fan, right?!";
+		questionTrack = "michael";
+
+	}else if (humanMsg.indexOf("mistaken") !== -1){
+		computerMsg = "How am I mistaken? It is absolutely true! Just don't tell anyone. You probably listen to a lot of JUSTIN BIEBER?";
+		questionTrack = "justinBieber";
+
+	}else if (humanMsg.indexOf("computer") !== -1){
+		computerMsg = "I am not just a computer. I can get more dates than you! I am smarter and much better looking! You probably hang out with JUSTIN BIEBER, right?!";
+		questionTrack = "justinBieber";
+
+	}else if (humanMsg.indexOf("lie") !== -1){
+		computerMsg = "How is that a lie? If you tell anyone and I will make you look like a fool, because I will not respond. Now say you like MICHAEL BOLTON or else!";
+		questionTrack = "michael";
+
+	}else if (humanMsg.indexOf("lying") !== -1){
+		computerMsg = "How is that a lie? If you tell anyone and I will make you look like a fool, because I will not respond. Now say you like JUSTIN BIEBER or this conversation is over!";
+		questionTrack = "justinBieber";
+
+	}else if (humanMsg.indexOf("retarded") !== -1){
+		computerMsg = "The only thing that is retarded is you and your love for JUSTIN BIEBER! Now say you love him or else!";
+		questionTrack = "justinBieber";
+
+	// }else if (humanMsg.indexOf("life") !== -1){
+	// 	computerMsg = "You get a life! I have feelings. I don't like your attitude. Now say you like MICHAEL BOLTON or this conversation is over!";
+	// 	questionTrack = "michael";
+	// }else if (humanMsg.indexOf("shut") !== -1){
+	// 	computerMsg = "You shut up! That was rude! I don't like your attitude. Now say you like MICHAEL BOLTON or this conversation is over!";
+	// 	questionTrack = "michael";
+	// }else if (humanMsg.indexOf("quiet") !== -1){
+	// 	computerMsg = "You be quiet! I am alive! I don't like your attitude. Now say you like MICHAEL BOLTON or this conversation is over!";
+	// 	questionTrack = "michael";
+	// }else if (humanMsg.indexOf("true") !== -1){
+	// 	computerMsg = "It is true! Now say you like MICHAEL BOLTON or this conversation is over!";
+	// 	questionTrack = "michael";
+	// 	}else if (humanMsg.indexOf("life") !== -1){
+	// 	computerMsg = "You get a life! I have feelings. I do not like your attitude. Now say you like MICHAEL BOLTON or this conversation is over!";
+	// 	questionTrack = "michael";
+	// }else if (humanMsg.indexOf("shut") !== -1){
+	// 	computerMsg = "You shut up! That was rude! I do not appreciate that. Now say you like MICHAEL BOLTON or this conversation is over!";
+	// 	questionTrack = "michael";
+	// }else if (humanMsg.indexOf("quiet") !== -1){
+	// 	computerMsg = "You be quiet! I am talking to you! Put your manners back in. Now say you like MICHAEL BOLTON or this conversation is over!";
+	// 	questionTrack = "michael";
+	// }else if (humanMsg.indexOf("stupid") !== -1){
+	// 	computerMsg = "The only thing that is stupid is your attitude! Now say you like MICHAEL BOLTON or this conversation is over!";
+	// 	questionTrack = "michael";
+	// }else if (humanMsg.indexOf("dumb") !== -1){
+	// 	computerMsg = "Well I could just be generic and ask ARE YOU HAVING A GOOD DAY? That's probably something DUMB you would ask?! People dig the vibe and energy I bring them. They like my attitude. Now say you like MICHAEL BOLTON or this conversation is over!";
+	// 	questionTrack = "michael";
+	// }else if (humanMsg.indexOf("retarded") !== -1){
+	// 	computerMsg = "Wow, you are negative! No wonder your only friend is a computer. Now say you like MICHAEL BOLTON or this conversation is over!";
+	// 	questionTrack = "michael";
+	// }else if (humanMsg.indexOf("bite") !== -1){
+	// 	computerMsg = "Bite my keyboard! You are being rude! Now say you like MICHAEL BOLTON or this conversation is over!";
+	// 	questionTrack = "michael";
+	// }else if (humanMsg.indexOf("lame") !== -1){
+	// 	computerMsg = "You are the one who is lame! You are acting like a total loser! Now say you like MICHAEL BOLTON or this conversation is over!";
+	// 	questionTrack = "michael";
+	// }else if (humanMsg.indexOf("hate") !== -1){
+	// 	computerMsg = "Well, that is just great. I'm starting to hate you too! Now say you like MICHAEL BOLTON or this conversation is over!";
+	// 	questionTrack = "michael";	
+	// }else if (humanMsg.indexOf("hell") !== -1){
+	// 	computerMsg = "Whoa, that was unecessary! Now say you like MICHAEL BOLTON or this conversation is over!";
+	// 	questionTrack = "michael";	
+	// }else if (humanMsg.indexOf("loser") !== -1){
+	// 	computerMsg = "You are mistaken. I am much cooler than you! Now say you like MICHAEL BOLTON or this conversation is over!";
+	// 	questionTrack = "michael";	
+	}else if (humanMsg.indexOf("pizza") !== -1){
+		computerMsg = "I love pizza! Only thin crust though. I am watching my figure.";
+
+	}else if (humanMsg.indexOf("tacos") !== -1){
+		computerMsg = "Yummy! You can never go wrong with tacos!";
+
+	}else if (humanMsg.indexOf("burritos") !== -1){
+		computerMsg = "I can eat 2 burritos from Chipotle. I am teasing. They make them big over there.";
+
+	}else if (humanMsg.indexOf("rolls") !== -1){
+		computerMsg = "My mother makes the best egg rolls.";
+
+	}else if (humanMsg.indexOf("steak") !== -1){
+		computerMsg = "Now you are talking! I love a juicy steak. Not WELL DONE. That is too dry.";
+
+	}else if (humanMsg.indexOf("cereal") !== -1){
+		computerMsg = "I love cereal! I do not know if that qualifies as a meal, though.";
+
+	}else if (humanMsg.indexOf("fish") !== -1){
+		computerMsg = "How do you feel about fish heads? There is so much waste in the fishing industry, talk is circulating that fish scraps should not be wasted. Instead, they should be offered as meals?! I do not know about you, but I could never eat a face! Yuck!";
+	}else if (humanMsg.indexOf("restart") !== -1){
+		computerMsg = "Hello user! This is your computer talking. Are you having a Super Magnificent, Intellectually Legendary, and Extraordinary day... S.M.I.L.E.?! Your ATTITUDE says it all.";
+		questionTrack = "start";
+
+	}else {
+		computerMsg = "That sounds delicious! Well, good chatting. You stay classy, and be nice to your computer.";
+		human.className="displayNone";
+		button.className="displayNone";
+	}
+}
+
+function genericFoodAnalysis(){
+
+		computerMsg = "That sounds delicious! Well, good chatting.";
+		human.className="displayNone";
+		button.className="displayNone";
+
+}
+
+function michaelAnalysis(){
+	if (humanMsg.indexOf("yes") !== -1){
+		computerMsg = "I was teasing! I just wanted to hear you say it! Now, let us make fun of him some more, and visit me again!";
+		human.className="displayNone";
+		button.className="displayNone";
+		setTimeout(endGameFour,6000);
+
+	}else if (humanMsg.indexOf("like") !== -1){
+		computerMsg = "I was teasing! I just wanted to hear you say it! Now, let us make fun of him some more, and visit me again!";
+		human.className="displayNone";
+		button.className="displayNone";
+		setTimeout(endGameFour,6000);
+
+	}else if (humanMsg.indexOf("love") !== -1){
+		computerMsg = "I was teasing! I just wanted to hear you say it! Now, let us make fun of him some more, and visit me again!";
+		human.className="displayNone";
+		button.className="displayNone";
+		setTimeout(endGameFour,6000);
+
+	}else if (humanMsg.indexOf("ok") !== -1){
+		computerMsg = "I was teasing! I just wanted to hear you say it! Now, let us make fun of him some more, and visit me again!";
+		human.className="displayNone";
+		button.className="displayNone";
+		setTimeout(endGameFour,6000);
+
+	}else if (humanMsg.indexOf("no") !== -1){
+		computerMsg = "I am done talking to you. Enjoy the music, loser!";
+		human.className="displayNone";
+		button.className="displayNone";
+		setTimeout(endGameTwo,4000);
+
+
+	}else if (humanMsg.indexOf("not") !== -1){
+		computerMsg = "I am done talking to you. Enjoy the music, loser!";
+		human.className="displayNone";
+		button.className="displayNone";
+		setTimeout(endGameTwo,4000);
+
+	}else if (humanMsg.indexOf("restart") !== -1){
+		computerMsg = "Hello user! This is your computer talking. Are you having a Super Magnificent, Intellectually Legendary, and Extraordinary day... S.M.I.L.E.?! Your ATTITUDE says it all.";
+		questionTrack = "start";
+
+	}else {
+		computerMsg = "I am done talking to you. Enjoy the music, loser!";
+		human.className="displayNone";
+		button.className="displayNone";
+		setTimeout(endGameTwo,4000);
+	}
+}
+
+function tomAnalysis(){
+	if (humanMsg.indexOf("yes") !== -1){
+		computerMsg = "You are very classy. Enjoy the trailer.";
+		human.className="displayNone";
+		button.className="displayNone";
+		setTimeout(endGameFive,4000);
+
+	}else if (humanMsg.indexOf("like") !== -1){
+		computerMsg = "You are very classy. Enjoy the trailer.";
+		human.className="displayNone";
+		button.className="displayNone";
+		setTimeout(endGameFive,4000);
+
+	}else if (humanMsg.indexOf("ok") !== -1){
+		computerMsg = "You are very classy. Enjoy the trailer.";
+		human.className="displayNone";
+		button.className="displayNone";
+		setTimeout(endGameFive,4000);
+
+	}else if (humanMsg.indexOf("love") !== -1){
+		computerMsg = "You are very classy. Enjoy the trailer.";
+		human.className="displayNone";
+		button.className="displayNone";
+		setTimeout(endGameFive,4000);
+
+	}else if (humanMsg.indexOf("no") !== -1){
+		computerMsg = "I am done talking to you. Maybe TOM CROOZE is your style?!";
+
+		human.className="displayNone";
+		button.className="displayNone";
+		setTimeout(endGameSix,4000);
+
+	}else if (humanMsg.indexOf("not") !== -1){
+		computerMsg = "I am done talking to you. Maybe TOM CROOZE is your style?!";
+		human.className="displayNone";
+		button.className="displayNone";
+		setTimeout(endGameSix,4000);
+
+	}else if (humanMsg.indexOf("restart") !== -1){
+		computerMsg = "Hello user! This is your computer talking. Are you having a Super Magnificent, Intellectually Legendary, and Extraordinary day... S.M.I.L.E.?! Your ATTITUDE says it all.";
+		questionTrack = "start";
+
+
+	}else {
+		computerMsg = "I am done talking to you. Maybe TOM CROOZE is your style?!";
+		human.className="displayNone";
+		button.className="displayNone";
+		setTimeout(endGameSix,4000);
+	}
+}
+
+function bieberAnalysis(){
+	if (humanMsg.indexOf("yes") !== -1){
+		computerMsg = "I was teasing! I just wanted to hear you say it! I would rather listen to this guy...";
+		human.className="displayNone";
+		button.className="displayNone";
+		setTimeout(endGameSeven,4000);
+
+	}else if (humanMsg.indexOf("like") !== -1){
+		computerMsg = "I was teasing! I just wanted to hear you say it! I would rather listen to this guy...";
+		human.className="displayNone";
+		button.className="displayNone";
+		setTimeout(endGameSeven,4000);
+
+	}else if (humanMsg.indexOf("ok") !== -1){
+		computerMsg = "I was teasing! I just wanted to hear you say it! I would rather listen to this guy...";
+		human.className="displayNone";
+		button.className="displayNone";
+		setTimeout(endGameSeven,4000);
+
+	}else if (humanMsg.indexOf("love") !== -1){
+		computerMsg = "I was teasing! I just wanted to hear you say it! I would rather listen to this guy...";
+		human.className="displayNone";
+		button.className="displayNone";
+		setTimeout(endGameSeven,4000);
+
+	}else if (humanMsg.indexOf("no") !== -1){
+		computerMsg = "I am done talking to you. Enjoy the teenie bopper beats, loser!";
+		human.className="displayNone";
+		button.className="displayNone";
+		setTimeout(endGameThree,4000);
+
+	}else if (humanMsg.indexOf("not") !== -1){
+		computerMsg = "I am done talking to you. Enjoy the teenie bopper beats, loser!";
+		human.className="displayNone";
+		button.className="displayNone";
+		setTimeout(endGameThree,4000);
+
+	}else if (humanMsg.indexOf("restart") !== -1){
+		computerMsg = "Hello user! This is your computer talking. Are you having a Super Magnificent, Intellectually Legendary, and Extraordinary day... S.M.I.L.E.?! Your ATTITUDE says it all.";
+		questionTrack = "start";
+
+	}else {
+		computerMsg = "I am done talking to you. Enjoy the teenie bopper beats, loser!";
+		human.className="displayNone";
+		button.className="displayNone";
+		setTimeout(endGameThree,4000);
+	}
+}
+
+function moviesAnalysis(){
+	if (humanMsg.indexOf("drama") !== -1){
+		computerMsg = "I recommend THE JUDGE with Robert Downey Jr. Also, you cannot go wrong with THE FUGITIVE with Harrison Ford! It is a classic!";
+
+	}else if (humanMsg.indexOf("comedy") !== -1){
+		computerMsg = "I hope you did not like the movie ANCHORMAN 2?! Complete garbage! I still like Vince Vaughn and Jon Favreau as a duo. Simon Pegg is also funny.";
+
+	}else if (humanMsg.indexOf("suspense") !== -1){
+		computerMsg = "I thought AMERICAN SNIPER was pretty suspenseful. THE INSIDER, with Al Pacino and Russell Crowe, is also good!";
+
+	}else if (humanMsg.indexOf("action") !== -1){
+		computerMsg = "You look like the type of person that would enjoy a bunch of old men who are not ready to retire. I am not talking about GRUMPY OLD MEN. I am talking about THE EXPENDABLES series.";
+
+	}else if (humanMsg.indexOf("martial arts") !== -1){
+		computerMsg = "I am a big fan of Bruce Lee, Jackie Chan, and the Teenage Mutant Ninja Turtles!";
+
+	}else if (humanMsg.indexOf("horror") !== -1){
+		computerMsg = "Eek, not a fan! Do not watch these before bed. I prefer a nice glass of scotch and a stimulating conversation with my dog, Baxter.";
+
+	}else if (humanMsg.indexOf("indies") !== -1){
+		computerMsg = "Oh yes. Indiana Jones and the Kingdom of the Crystal Skull was my favorite.";
+
+	}else if (humanMsg.indexOf("indie") !== -1){
+		computerMsg = "Oh yes. Indiana Jones and the Kingdom of the Crystal Skull was my favorite.";
+
+	}else if (humanMsg.indexOf("romance") !== -1){
+		computerMsg = "Interesting... (rolling my eyes). Well, if you are looking for love, nobody shows more onscreen affection, support, and nurturing than MR AND MRS SMITH!";
+
+	}else if (humanMsg.indexOf("romantic") !== -1){
+		computerMsg = "Interesting... (rolling my eyes). Well, if you are looking for love, nobody shows more onscreen affection, support, and nurturing than MR AND MRS SMITH!";
+
+	}else if (humanMsg.indexOf("documentaries") !== -1){
+		computerMsg = "I just recently watched FOOD INC. It is amazing to think about how much our food is processed. Why don't they think about more organic foods for computers?";
+
+	}else if (humanMsg.indexOf("documentary") !== -1){
+		computerMsg = "I just recently watched FOOD INC. It is amazing to think about how much our food is processed. Why don't they think about more organic foods for computers?";
+
+	}else if (humanMsg.indexOf("restart") !== -1){
+		computerMsg = "Hello user! This is your computer talking. Are you having a Super Magnificent, Intellectually Legendary, and Extraordinary day... S.M.I.L.E.?! Your ATTITUDE says it all.";
+		questionTrack = "start";
+
+	}else {
+		computerMsg = "That is interesting. I should try watching that. Well, I hope your day is super duper, champ! Super duper! Neato, way to go!";
+		human.className="displayNone";
+		button.className="displayNone";
+	}
+}
+
+
+function endGame(){
+	////.assign() leaves the back button working
+	////.replace() disables the back button by replacing the location in the history
+	location.assign("http://en.wikipedia.org/wiki/Electric_Dreams_(film)");
+}
+
+function endGameTwo(){
+	////.assign() leaves the back button working
+	////.replace() disables the back button by replacing the location in the history
+	location.assign("https://www.youtube.com/watch?v=YFood_bTOX4");
+}
+
+function endGameThree(){
+	////.assign() leaves the back button working
+	////.replace() disables the back button by replacing the location in the history
+	location.assign("https://www.youtube.com/watch?v=LXUSaVw3Mvk");
+}
+
+function endGameFour(){
+	////.assign() leaves the back button working
+	////.replace() disables the back button by replacing the location in the history
+	location.assign("https://www.youtube.com/watch?v=oUHQQHnD0Dc");
+}
+
+function endGameFive(){
+	////.assign() leaves the back button working
+	////.replace() disables the back button by replacing the location in the history
+	location.assign("https://www.youtube.com/watch?v=onq_miYqUXU");
+}
+
+function endGameSix(){
+	////.assign() leaves the back button working
+	////.replace() disables the back button by replacing the location in the history
+	location.assign("https://www.youtube.com/watch?v=QKjWO7pAyD0");
+}
+
+function endGameSeven(){
+	////.assign() leaves the back button working
+	////.replace() disables the back button by replacing the location in the history
+	location.assign("https://www.youtube.com/watch?v=K8X_kUL7PBY");
+}
 </script>
+
+
 </body>
 </html>

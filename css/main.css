@@ -1,0 +1,65 @@
+/* Main Electric Stylesheet*/
+
+/*@font-face {
+   font-family: myFirstFont;
+   src: url(KaushanScript-Regular.);
+*/
+
+body {
+	background-color: #407F26;
+}
+
+div #body {
+	background-color: #3BCC00;
+	width: 960px;
+	margin: auto;
+	margin-top: 15px;
+	padding-top: 20px;
+	padding-bottom: 25px;
+	border: 3px solid black;
+	border-radius: 10px;
+}
+
+div #title {
+	background-color: #80FF4C;
+	border: 3px solid black;
+	text-align: center;
+	width: 960px;
+	margin: auto;
+	border-radius: 10px;
+	font-family: chiller;
+	font-size: 40px;
+	color: #407F26;
+}
+
+div #will {
+	text-align: center;
+	border-radius: 10px;
+}
+
+div #outbox {
+	background-color: #80FF4C;
+	border: 5px;
+	padding: 5px;
+	margin: 0px 15px 25px 15px;
+	border-radius: 10px;
+	text-align: center;
+	font-family: "Comic Sans MS";
+}
+
+div #output {
+	text-align: left;
+	font-size: 20px;
+	padding: 10px;
+}
+
+#button {
+	background-color: #407F26;
+	color: white;
+}
+
+#restart{
+	color: #407F26;
+	font-size: 25px;
+}
+

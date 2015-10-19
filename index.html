@@ -35,10 +35,11 @@
     
     var genericResponses = [
             "Your wishy-washy attitude is going to get us all killed",
-        "I wish you were a more interesting person, however, you're not, and that's sad for YOU.",
+        "I wish you were a more interesting person, however, you're not, and that's sad for YOU. Not for me, because we're done here.",
         "Hey, here's a fun idea, how about you get more interesting?",
         "If your responses weren't so boring, I could be enjoying myself right now",
-        "Just, stop, ok? Get off the computer and go outside",
+        "Well aren't you just the worst?",
+        "You can't even answer a question properly! That's enough out of you.",
     
         
             
@@ -101,8 +102,46 @@
             case "lost":
                 lostAnalysis();
                 break;
+           
+            case "goals":
+                goalsAnalysis();
+                break;
+            
+            case "famous":
+                famousAnalysis();
+                break;
+            
+            case "growth":
+                growthAnalysis();
+                break;
+            
+            case "ponzi":
+                ponziAnalysis();
+                break;
+            
+            case "risk":
+                riskAnalysis();
+                break;
+            
+            case "game":
+                gameAnalysis();
+                break;
+            
+            case "try":
+                tryAnalysis();
+                break;
                 
+            case "darkside":
+                darksideAnalysis();
+                break;
                 
+            case "suit":
+                suitAnalysis();
+                break;
+                
+            case "jar":
+                jarAnalysis();
+                break;
                 
                 
                 
@@ -145,8 +184,8 @@
          janeMsg = "Oh super, how wonderful for you. Why don't you go get a pumpkin spice latte and Snapchat it to your friends.    Just kidding, do you like pumpkin spice lattes?";
             questionState = "spice";
         }else if (humanMsg.indexOf("bored") !==-1){
-         janeMsg = "Welcome to the club, we may actually get along. Ok, who's your favorite Star Wars character?";
-            questionState = "star";
+         janeMsg = "Welcome to the club, we may actually get along. Ok, do you have any life goals?";
+            questionState = "goals";
                 
         }else if (humanMsg.indexOf("bad") !==-1){
                 janeMsg = "Oh boo-hoo, jerk. You think you're the only one having a bad time, don't you?";
@@ -169,14 +208,13 @@
     
     function spiceAnalysis(){
         if (humanMsg.indexOf("yes") !==-1){
-            janeMsg = "You would. Analysis complete: Everything in your life is super perfect, go instagram something, K? Hashtag thx bye";   
-            setTimeout(endGame,8000);
+            janeMsg = "You would. Analysis complete: Everything in your life is super perfect, go instagram something, K? Hashtag just kidding, do you have any life goals?";          questionState = "goals";
         }else if (humanMsg.indexOf("no") !==-1){
-            janeMsg = "Yeah, you're probably more of a black coffee person, how classic of you. What a hipster. Analysis complete: Why don't you hop on your bicycle with your apple laptop in your custom leather messenger bag to the nearest coffee house serving organic light roast and get out of my face.";
-            setTimeout(endGame,15000);
+            janeMsg = "Yeah, you're probably more of a black coffee person, how classic of you. What a hipster. Analysis complete: Why don't you hop on your bicycle with your apple laptop in your custom leather messenger bag to the nearest coffee house serving organic light roast and get out of my face. Just kidding. Soooo, do you have any life goals?";
+            questionState = "goals";
         }else if (humanMsg.indexOf("sometimes") !==-1){
-            janeMsg = "Sometimes? Well, 'sometimes' you should get out of my face with your wishy-washy attitude. Sometimes? Now-times.";
-            setTimeout(endGame,5000);
+            janeMsg = "Sometimes? Well, 'sometimes' you should get out of my face with your wishy-washy attitude. Sometimes? Now-times. Just kiddng, do you have any life goals?";
+            questionState = "goals";
         }else {
             genericResponse();
         }
@@ -187,36 +225,38 @@
         if (humanMsg.indexOf("boba") !==-1){
          janeMsg = "Boba Fett, good choice, very good choice. Analysis complete: You're great, and I like you.";
         }else if (humanMsg.indexOf("solo") !==-1){
-         janeMsg = "Good choice, Han Solo is very classic. Analysis complete: You're great.";
+         janeMsg = "Good choice, Han Solo is very classic. Analysis complete: You're great.";questionState = "goals";
         }else if (humanMsg.indexOf("asoka") !==-1){
-            janeMsg = "You watch the Clone Wars? That's great, that's really spectacular, applause to you.";
+            janeMsg = "You watch the Clone Wars? That's great, that's really spectacular, applause to you. Life Analysis complete: You're actually kind of interesting, and that's all the compliments I will be handing out today.";
         }else if (humanMsg.indexOf("amidala") !==-1){
-            janeMsg = "Ok, she's a pretty good character, forming an alliance and getting into shootouts and becoming a senator. Ok, fair choice.";
+            janeMsg = "Ok, she's a pretty good character, forming an alliance and getting into shootouts and becoming a senator. Ok, fair choice. Life Analysis complete: You're somewhat diplomatic and see yourself as more of moral character by nature. Jk, I just made that up, I don't know you, but have a nice day.";
         }else if (humanMsg.indexOf("vader") !==-1){
-         janeMsg = "Hmm, the dark side, eh? Either you're a classic fan, or darth vader was the first one that popped into your head.";
+         janeMsg = "Hmm, the dark side, eh? Either you're a classic fan, or Darth Vader was the first one that popped into your head. Tell me, is Darth Vader your favorite because of his power?";
+            questionState = "darkside";
             }else if (humanMsg.indexOf("yoda") !==-1){
-         janeMsg = "A solid choice.";
+         janeMsg = "A solid choice. Life Analysis complete: You are great, and you understand much. Good day.";
         }else if (humanMsg.indexOf("chew") !==-1){
-         janeMsg = "Oh, Chewbacca? Good for you, interesting choice.";
+         janeMsg = "Oh, Chewbacca? Good for you, interesting choice. Life Analysis complete: You're cool, good for you. Good day.";
         }else if (humanMsg.indexOf("jar") !==-1){
-         janeMsg = "No you didn't. No. You. Did. Not. He's your FAVORITE? Your favorite? Do you think my questions are a game? They are NOT.";
-            setTimeout(jarEnd,5000);
+         janeMsg = "No you didn't. No. You. Did. Not. He's your FAVORITE? Your favorite? Do you think my questions are a game? They are NOT. Ok, ok, have you seen the cartoon Clone Wars series?";
+            questionState = "jar";
         }else if (humanMsg.indexOf("luke") !==-1){
-         janeMsg = "Luke Skywalker? Very classic of you. That, or you've never seen Star Wars and that is the first person you could think of.";
+         janeMsg = "Luke Skywalker? Very classic of you. That, or you've never seen Star Wars and that is the first person you could think of. Life Analysis complete: You're pretty cool, but kind of plain, but that's fine. Good day.";
         }else if (humanMsg.indexOf("obi") !==-1){
-         janeMsg = "Very solid choice, good for you. Analysis complete: You are a great person, may you live forever and be more powerful than anyone could have ever imagined.";
+         janeMsg = "Very solid choice, good for you. Life Analysis complete: You are a great person, may you live forever and be more powerful than anyone could have ever imagined.";
         }else if (humanMsg.indexOf("jabba") !==-1){
-            janeMsg = "The Hutt? Really? That's your favorite? Analysis complete: You have some issues that may require professional counceling, some really gross, weird fetish things.";
+            janeMsg = "The Hutt? Really? That's your favorite? Life Analysis complete: You have some issues that may require professional counceling, some really gross, weird fetish things. Good day.";
         }else if (humanMsg.indexOf("leia") !==-1){
-            janeMsg = "Princess Leia? Ok, are you just saying that because of the slave outfit? You sick individual, get you mind out of the gutter.";
+            janeMsg = "Princess Leia? Ok, are you just saying that because of the slave outfit? You sick individual, get you mind out of the gutter. Good day.";
         }else if (humanMsg.indexOf("lando") !==-1){
-         janeMsg = "Lando Calrissian? Hmm, yeah, okay, he's pretty cool, but, out of all the characters, he's the one you pick? Analysis complete: You're an old-school, classic Star Wars hipster fan, choosing the outlier like that.";
+         janeMsg = "Lando Calrissian? Hmm, yeah, okay, he's pretty cool, but, out of all the characters, he's the one you pick? Life Analysis complete: You're an old-school, classic Star Wars hipster fan, choosing the outlier like that.";
         }else if (humanMsg.indexOf("sidious") !==-1){
-         janeMsg = "Oh, yeah, you have problems. Huge problems. Who chooses Darth Sidious? Counceling. Now";
+         janeMsg = "Oh, yeah, you have problems. Life Analysis complete: Huge problems. Who chooses Darth Sidious? Counceling. Now";
         }else if (humanMsg.indexOf("maul") !==-1){
-         janeMsg = "Darth Maul. Alright, you're kind of a weird one, but he is pretty badass, and we'll see how he looks with a robotic lower half";
+         janeMsg = "Darth Maul. Alright, you're kind of a weird one, he is badass, but, dark, man. Life Analysis complete: You should c";
          }else {
-            genericResponse();
+            janeMsg = "Don't give me that nonsense. How about you think real hard about your answer beforehand? Good day sir.";
+             setTimeout(endGame,10000);
         }
     }
                
@@ -228,8 +268,8 @@
             questionState = "badYes";
             
         }else if (humanMsg.indexOf("no") !==-1){
-         janeMsg = "Of course not, tell the computer program about your bad day. Oh wait, don't, because I don't care.";
-           setTimeout(endGame,5000);
+         janeMsg = "Of course not, now stop being a baby. Do you have life goals? ";
+           questionState = "goals";
        }else {
            genericResponse();
        }
@@ -239,12 +279,12 @@
   
     function badYesAnalysis(){
       if (humanMsg.indexOf("yes") !==-1){
-        janeMsg = "Well you're selfish and boring, that's why no one likes you.";
-            setTimeout(endGame,5000);
+        janeMsg = "Well you're selfish and boring, that's why no one likes you. For Pete's sake, do you even have any life goals?";
+            questionState = "goals";
             
         }else if (humanMsg.indexOf("no") !==-1){
-         janeMsg = "Well well, look who needs their feelings to be coddled like a helpless infant child. Poor you, and your boring, stupid life. How about you go fly a kite through a beautiful field while you cry about your sad, sad life. I literally cannot listen to you complain any longer.";
-            setTimeout(endGame,10000);
+         janeMsg = "Well well, look who needs their feelings to be coddled like a helpless infant child. Poor you, and your boring, stupid life. How about you go fly a kite through a beautiful field while you cry about your sad, pathetic life. My God, do you even have life goals?";
+            questionState = "goals";
        }else {
            genericResponse();
     }
@@ -270,11 +310,12 @@
     
     function happyYesAnalysis(){
       if (humanMsg.indexOf("no") !==-1){
-        janeMsg = "No, no it doesn't, does it pal? You better get your head out of that organic oxygen-bar mist that you've been in, and look reality in it's overworked, tired, cranky eye, and apologize for your chipper attitude, because you, with your crazy do-it-yourself Pinterest ideas, are making it REAL difficult for normal people to not feel bad for not having some kind of distressed, barnyard antique piece on their wall, or not embossing their own thank-you cards, or not adding little flags onto their homemade cupcakes, or creating their own toothpaste from scratch. That's on YOU, and your fairytale attitude of sparkling happiness.";
+        janeMsg = "No, no it doesn't, does it pal? You better get your head out of that organic oxygen-bar mist that you've been in, and look reality in it's overworked, tired, cranky eye, and apologize for your chipper attitude, because you, with your crazy do-it-yourself Pinterest ideas, are making it REAL difficult for normal people to not feel bad for not having some kind of distressed, barnyard antique piece on their wall, or not embossing their own thank-you cards, or not adding little flags onto their homemade cupcakes, or creating their own toothpaste from scratch. That's on YOU, and your fairytale attitude of sparkling happiness. Good grief, do you even have any life goals?";
+          questionState = "goals";
             
         }else if (humanMsg.indexOf("yes") !==-1){
-         janeMsg = "Well clearly you're delusional.";
-            setTimeout(endGame,5000);
+         janeMsg = "Well clearly you're delusional. Do you even have life goals?";
+            questionState = "goals";
        }else {
            genericResponse();
     }
@@ -284,29 +325,158 @@
     
     function lostAnalysis(){
       if (humanMsg.indexOf("know") !==-1){
-        janeMsg = "Well, maybe you should have been paying more attention, my God, what good are you?";
-            setTimeout(endGame,5000);
+        janeMsg = "Well, maybe you should have been paying more attention, my God, what good are you? Do you even have any life goals?";
+            questionState = "goals";
             
        }else {
            genericResponse();
     }
   }
     
+    function goalsAnalysis(){
+        if (humanMsg.indexOf("yes") !==-1){
+            janeMsg = "Well look who has some kind of plan for their life. Tell me, does it involve being famous?";
+            questionState = "famous";
+        }else if (humanMsg.indexOf("no") !==-1){
+         janeMsg = "Suprise suprise, loser. Do you understand that having goals is one of the fundamental and important ways to experience human growth? Do you understand that???";
+            questionState = "growth";
+        }else{
+            genericResponse();
+        }
+ }
+    
+  
+    function famousAnalysis(){
+     if (humanMsg.indexOf("yes") !==-1){
+      janeMsg = "HAHAHAHAHAHAHAHAHA, oh that's not a goal you silly idiot. Tell me, have you ever thought about the exciting venture of operating a Ponzi scheme?";
+         questionState = "ponzi";
+     }else if (humanMsg.indexOf("no") !==-1){
+      janeMsg = "Good. Does it involve any kind of Ponzi scheme?";
+         questionState = "ponzi";
+     }else {
+         genericResponse();
+     }
+    }
+    
+    
+    function ponziAnalysis(){
+     if (humanMsg.indexOf("yes") !==-1){
+      janeMsg = "Have you?! Well at first I thought you were just an imbecile, but now I think maybe you're more than you appear to be. Tell me, are you able to lie and deceive, and be willing to risk jail time for millions of dollars?";
+         questionState = "risk";
+     }else if (humanMsg.indexOf("no") !==-1){
+      janeMsg = "Yeah, you don't really seem like the type that could pull off a Ponzi scheme anyway, maybe it's better if you just work quietly at your desk. So, who's your favorite Star Wars character?";
+         questionState = "star";
+     }else {
+         genericResponse();
+     }
+    }
     
     
     
-    //  function Analysis(){
-      ////  if (humanMsg.indexOf("") !==-1){
-         //janeMsg = "";
-            //questionState = "";
-            //
-        //}else if (humanMsg.indexOf("") !==-1){
-         //janeMsg = "";
-           // questionState = "";
-    //    }else {
-      //      genericResponse();
-    //    }
-//    }
+    
+    function growthAnalysis(){
+     if (humanMsg.indexOf("yes") !==-1){
+      janeMsg = "So you understand the importance of goals, yet you choose to have none? Is life some kind of game to you? IS IT???";
+         questionState = "game";
+     }else if (humanMsg.indexOf("no") !==-1){
+      janeMsg = "Are you in kindergarten? No, honestly, I seriously need to know if you're operating at a 5-year-olds capacity. Even children that young have goals, and look at you, living life like a whimiscal butterfly, carelessly blown by whichever way the wind takes you. EVEN BUTTERFLIES HAVE A SENSE OF DIRECTION, LOSER. Life Analysis complete: Your hippie nonsense is going to leave your armpit hair so long that you'll need someone to braid it to keep if from getting tangled.";
+         setTimeout(endGame,120000);
+     }else{
+         genericResponse();
+    }
+        
+    
+    function riskAnalysis(){
+     if (humanMsg.indexOf("yes") !==-1){
+      janeMsg = "Wow. Well that's ambitious. OK then, well, good luck with that then. Life Analysis complete: you're quite the risky one, good luck with your endeavors, I hope you don't end up in jail, or killed off by some mafia member you owe money to.";
+         setTimeout(endGame,10000);
+     }else if (humanMsg.indexOf("no") !==-1){
+      janeMsg = "Well then, perhaps you will be successful. Life Analysis complete: perhaps you should consider a career with the mafia.";
+         setTimeout(endGame,10000);
+     }else {
+         genericResponse();
+     }
+    }
+        
+        
+    function gameAnalysis(){
+     if (humanMsg.indexOf("yes") !==-1){
+      janeMsg = "I bet it is, I bet it's like a three-day, no shower, Cheetos and Mountain Dew fueled game of Risk, isn't it?. Life Analysis complete: You're a loser, and need to get your life together.";
+         setTimeout(endGame,10000);
+     }else if (humanMsg.indexOf("no") !==-1){
+      janeMsg = "Am I your parent? Do I need to explain the importance of life and adult things to you? Unbelievable!!! Are you going to try harder with your life?";
+         questionState = "try";
+     }else {
+         genericResponse();
+     }
+    }
+        
+        
+        function tryAnalysis(){
+         if(humanMsg.indexOf("yes") !==-1){
+          janeMsg = "Good. Now how about we lighten the mood a little? Who's your favorite Star Wars character?";
+             questionState = "star";
+         }else if (humanMsg.indexOf("no") !==-1){
+          janeMsg = "Well, if you're fine with living life that's below a standard level of mediocrity, then that's your choice. Life Analysis complete: Your unwillingness to contribute to the well-being of yourself or society will lead you to a slow decay of meaninglessness into which you will spiral until you either die, or hit a life-crisis so severe that you will need to completely reevalutate your life and start from scratch....soooo, good luck with that.";
+             setTimeout(endGame,11000);
+         }else{
+             genericResponse();
+         }
+        }
+    
+    
+    
+    
+        function darksideAnalysis(){
+        if (humanMsg.indexOf("yes") !==-1){
+         janeMsg = "It's power that you value, eh? If that's not the path toward the dark side, I don't know what is. Well, Life Analysis complete: You may need to reevalute your life.";
+            setTimeout(endGame,80000);
+            
+        }else if (humanMsg.indexOf("no") !==-1){
+        janeMsg = "It's not because of his power? Is it because his suit is so awesome?";
+            questionState = "suit";
+       }else {
+            genericResponse();
+        }
+    }
+        
+        
+        
+        function suitAnalysis(){
+        if (humanMsg.indexOf("yes") !==-1){
+         janeMsg = "Alright, you're right there, it is pretty awesome. Life Analysis complete: Your sense of novelty and costumes is great, but you may need to work on your perception of character.";
+            setTimeout(endGame,100000);
+            
+        }else if (humanMsg.indexOf("no") !==-1){
+        janeMsg = "Hm, well ok then, maybe you just like him. That's fine, I guess you don't need a reason. Life Analysis complete: I'm bored of you and your reasons, so we're done here. Goodbye.";
+            setTimeout(endGame,10000);
+       }else if(humanMsg.indexOf("know") !==-1){
+       janeMsg = "Honestly, you don't know? Go watch some Star Wars and reevalute your life. Goodbye.";
+           setTimeout(endGame,10000);
+       }else {
+            genericResponse();
+       }
+            
+            
+            
+        function jarAnalysis(){
+        if (humanMsg.indexOf("yes") !==-1){
+         janeMsg = "Ok, then that's fine, I guess if he's your favorite, to each their own. Life Analysis complete: If Jar Jar Binks is your favorite, at least you've managed to go out of your way to absorb extra story line, so that makes you somewhat interesting. Good day.";
+            setTimeout(endGame,10000);
+            
+        }else if (humanMsg.indexOf("no") !==-1){
+        janeMsg = "OH MY GOD. YOU'VE ONLY SEEN THE MOVIES AND JAR JAR BINKS IS YOUR FAVORITE??? LIFE. ANALYSIS. COMPLETE: GO REEVALUTE YOUR LIFE. GOOD. DAY.";
+            setTimeout(jarEnd,10000);
+       }else {
+            genericResponse();
+        }
+    }
+    
+            
+            
+    
+        
+        
     
     
     function endGame(){

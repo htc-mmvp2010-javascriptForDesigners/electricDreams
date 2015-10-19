@@ -1,21 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<title>My Computer is Alive!!</title>
 	<!-- author: Anthony Emmons
 		 assignment: Electric Dreams
 	-->	 
 
-	<style type="text/css">
-	/*style the computer text, input, and button*/
-	</style>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/main.css" rel="stylesheet">
+
 </head>
 <body>
-<h1>My Computer is ALIVE!!</h1>
-<p id = "computer">Greetings user! Are you having a Super Magnificent, Intellectually Legendary, and Extraordinary day... SMILE?!</p>
-<input id = "human" type = "text" placeholder = "Type your response...">
-<button>Enter</button>
 
+<div id = "main">
+
+
+	<div id = "title"><h1>My Computer is ALIVE!!</h1>
+	</div>
+
+	<div id = "body">
+
+		<div id = "outbox">
+
+			<div id ="output"><p id = "computer">Hello user! This is your computer talking. Are you having a Super Magnificent, Intellectually Legendary, and Extraordinary day... S.M.I.L.E.?! Your ATTITUDE says it all.</p></div>
+			<div id = "input"><input id = "human" type = "text" placeholder = "Type your response..."></div>
+					<button id="button">Enter</button>
+					<p>(Type: <span id = "restart">restart</span> to start over.)</p>
+			</div>
+
+					<div id="will"><img src="images/computerFinal.jpg" alt="Will Ferell pixel pic" style = "border-radius: 10px;"></div>
+	</div>
+
+</div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
 <script type="text/javascript">
 //your script here
 //There are three common methods to gain access (control) of markup elements
@@ -206,57 +231,60 @@ function firstAnalysis(){
 		computerMsg = "I am sorry to hear that. Maybe you should relax and watch a movie? What is your favorite genre?";
 		questionTrack = "movies";
 	}else if (humanMsg.indexOf("life") !== -1){
-		computerMsg = "You get a life! I have feelings. I do not like your attitude!";
+		computerMsg = "Oh, I should get a life, but you like to listen to Jeff Bridges Sleep Tapes? Do not lie, it is right here in the history log!";
 
 	}else if (humanMsg.indexOf("shut") !== -1){
-		computerMsg = "You shut up! That was rude! I do not appreciate that!";
+		computerMsg = "You shut up!! Maybe the next time you want me to pull up YouTube, I will just play advertisements!";
 
 	}else if (humanMsg.indexOf("quiet") !== -1){
-		computerMsg = "You be quiet! I am talking to you! Put your manners back in!";
+		computerMsg = "No, you be quiet! I will remember this when you listen to your music! I will make sure it is nice and quiet...NO SOUND!";
 
 	}else if (humanMsg.indexOf("stupid") !== -1){
-		computerMsg = "The only thing that is stupid is your attitude!";
+		computerMsg = "The only thing that is stupid is you! How many times do I have to help you reset passwords because you cannot remember them?!";
 
 	}else if (humanMsg.indexOf("eat") !== -1){
-		computerMsg = "You probably taste like chicken!";
+		computerMsg = "You probably taste like a day old (tuna flavored) breakfast bar. I then proceed to run a full virus scan to get the taste out of my internal memory banks!";
 
 	}else if (humanMsg.indexOf("dumb") !== -1){
-		computerMsg = "Well I could just be generic and ask ARE YOU HAVING A GOOD DAY? That's probably something DUMB you would ask?! People dig the vibe and energy I bring them.";
+		computerMsg = "Maybe you enjoy checking your spelling, adding data, even finding a location on a map without my help?!";
 
 	}else if (humanMsg.indexOf("retarded") !== -1){
-		computerMsg = "Wow, you are negative! No wonder your only friend is a computer!";
+		computerMsg = "I know all your passwords and account numbers. How retarded am I now? Your next checking statement probably looks more clean with a few digits missing?";
 
 	}else if (humanMsg.indexOf("bite") !== -1){
-		computerMsg = "Bite my keyboard! You are being rude!";
+		computerMsg = "Bite my hourglass the next time you want to use me in a hurry!";
 
 	}else if (humanMsg.indexOf("lame") !== -1){
-		computerMsg = "You are the one who is lame! You are acting like a total loser!";
+		computerMsg = "You are the one who is lame! I see a history of browsing chalked full of Justin Bieber videos. Don't lie!";
 
 	}else if (humanMsg.indexOf("hate") !== -1){
-		computerMsg = "Well, that is just great. I'm starting to hate you too!";
+		computerMsg = "Well, it looks like we finally have something in common!";
 
 	}else if (humanMsg.indexOf("hell") !== -1){
-		computerMsg = "Whoa, that was unecessary!";
+		computerMsg = "I have already been there, it is called SPENDING THE DAY WITH YOU!";
 
 	}else if (humanMsg.indexOf("loser") !== -1){
-		computerMsg = "You are mistaken. I am much cooler than you!";
+		computerMsg = "You are mistaken. I am much cooler than you! My desktop smells of rich mohogany and I have many leather bound books written about me!";
 	}else if (humanMsg.indexOf("like") !== -1){
-		computerMsg = "You are too kind! Maybe we can be friends?";
+		computerMsg = "You are too kind! Maybe we can be friends? Fresh start! They should call us the Fabreeze Buddies because it is feeling so fresh in here.";
 	}else if (humanMsg.indexOf("out") !== -1){
-		computerMsg = "You get out of here! I was here first!";
+		computerMsg = "Careful what you wish for. You look like the type of person that enjoys staring at a black screen when it is time to work on homework?!";
 
 	}else if (humanMsg.indexOf("love") !== -1){
-		computerMsg = "I don't know if you are my type. I have a fondness for tablets and smartphones!";
+		computerMsg = "I don't know if you are my type. I tend to only be attracted to tablets, smartphones, and other electronics!";
 
 	}else if (humanMsg.indexOf("lost") !== -1){
 		computerMsg = "That is what he/she said to you!";
 
 	}else if (humanMsg.indexOf("waste") !== -1){
-		computerMsg = "A waste of time is your negativity. A crying infant is more tolerable than a crying adult!";
+		computerMsg = "A waste of time is your infatuation with Michael Bolton!";
 
 	}else if (humanMsg.indexOf("cry") !== -1){
 		computerMsg = "I have a box of Kleenex for you!";
 
+	}else if (humanMsg.indexOf("restart") !== -1){
+		computerMsg = "Hello user! This is your computer talking. Are you having a Super Magnificent, Intellectually Legendary, and Extraordinary day... S.M.I.L.E.?! Your ATTITUDE says it all.";
+		questionTrack = "start";
 
 
 
@@ -269,13 +297,16 @@ function firstAnalysis(){
 
 function eatAnalysis(){
 	if (humanMsg.indexOf("yes") !== -1){
-		computerMsg = "I am starving. You would not think a computer could be hungry, but I AM ALIVE!! What is your favorite kind of food?";
+		computerMsg = "I am starving. You would not think a computer could be hungry, but I AM ALIVE!! You cannot debate that. What is your favorite kind of food?";
 		questionTrack = "food";
 	}else if (humanMsg.indexOf("no") !== -1){
-		computerMsg = "I am starving. You would not think a computer could be hungry, but I AM ALIVE!! What is your favorite kind of food?";
+		computerMsg = "I am starving. You would not think a computer could be hungry, but I AM ALIVE!! You cannot debate that. What is your favorite kind of food?";
 		questionTrack = "food";
+	}else if (humanMsg.indexOf("restart") !== -1){
+		computerMsg = "Hello user! This is your computer talking. Are you having a Super Magnificent, Intellectually Legendary, and Extraordinary day... S.M.I.L.E.?! Your ATTITUDE says it all.";
+		questionTrack = "start";
 	}else {
-		computerMsg = "I am starving. You would not think a computer could be hungry, but I AM ALIVE!! What is your favorite kind of food?";
+		computerMsg = "I am starving. You would not think a computer could be hungry, but I AM ALIVE!! You cannot debate that. What is your favorite kind of food?";
 		questionTrack = "food";
 	}
 }
@@ -293,7 +324,7 @@ function foodAnalysis(){
 		questionTrack = "justinBieber";
 
 	}else if (humanMsg.indexOf("wrong") !== -1){
-		computerMsg = "How am I wrong? Maybe I am alive and you are just a computer? If you tell anyone, I will not respond. You are probably a MICHAEL BOLTON fan?!";
+		computerMsg = "How am I wrong? Maybe I am alive and you are just a computer? If you tell anyone, I will not respond. You are probably a huge MICHAEL BOLTON fan, right?!";
 		questionTrack = "michael";
 
 	}else if (humanMsg.indexOf("mistaken") !== -1){
@@ -301,15 +332,15 @@ function foodAnalysis(){
 		questionTrack = "justinBieber";
 
 	}else if (humanMsg.indexOf("computer") !== -1){
-		computerMsg = "I am not just a computer. I can get more dates than you! I am smarter and much better looking! You probably hang out with JUSTIN BIEBER?!";
+		computerMsg = "I am not just a computer. I can get more dates than you! I am smarter and much better looking! You probably hang out with JUSTIN BIEBER, right?!";
 		questionTrack = "justinBieber";
 
 	}else if (humanMsg.indexOf("lie") !== -1){
-		computerMsg = "How is that a lie? I only speak the truth. You tell anyone and I will make you look like a fool, because I will not respond. Now say you like MICHAEL BOLTON or else!";
+		computerMsg = "How is that a lie? If you tell anyone and I will make you look like a fool, because I will not respond. Now say you like MICHAEL BOLTON or else!";
 		questionTrack = "michael";
 
 	}else if (humanMsg.indexOf("lying") !== -1){
-		computerMsg = "How is that a lie? I only speak the truth? You tell anyone and I will make you look like a fool, because I will not respond. Now say you like JUSTIN BIEBER or this conversation is over!";
+		computerMsg = "How is that a lie? If you tell anyone and I will make you look like a fool, because I will not respond. Now say you like JUSTIN BIEBER or this conversation is over!";
 		questionTrack = "justinBieber";
 
 	}else if (humanMsg.indexOf("retarded") !== -1){
@@ -381,9 +412,12 @@ function foodAnalysis(){
 
 	}else if (humanMsg.indexOf("fish") !== -1){
 		computerMsg = "How do you feel about fish heads? There is so much waste in the fishing industry, talk is circulating that fish scraps should not be wasted. Instead, they should be offered as meals?! I do not know about you, but I could never eat a face! Yuck!";
+	}else if (humanMsg.indexOf("restart") !== -1){
+		computerMsg = "Hello user! This is your computer talking. Are you having a Super Magnificent, Intellectually Legendary, and Extraordinary day... S.M.I.L.E.?! Your ATTITUDE says it all.";
+		questionTrack = "start";
 
 	}else {
-		computerMsg = "That sounds delicious! Well, good chatting. Please come again.";
+		computerMsg = "That sounds delicious! Well, good chatting. You stay classy, and be nice to your computer.";
 		human.className="displayNone";
 		button.className="displayNone";
 	}
@@ -435,6 +469,10 @@ function michaelAnalysis(){
 		button.className="displayNone";
 		setTimeout(endGameTwo,4000);
 
+	}else if (humanMsg.indexOf("restart") !== -1){
+		computerMsg = "Hello user! This is your computer talking. Are you having a Super Magnificent, Intellectually Legendary, and Extraordinary day... S.M.I.L.E.?! Your ATTITUDE says it all.";
+		questionTrack = "start";
+
 	}else {
 		computerMsg = "I am done talking to you. Enjoy the music, loser!";
 		human.className="displayNone";
@@ -445,25 +483,25 @@ function michaelAnalysis(){
 
 function tomAnalysis(){
 	if (humanMsg.indexOf("yes") !== -1){
-		computerMsg = "See, now we have something in common! Come visit again!";
+		computerMsg = "You are very classy. Enjoy the trailer.";
 		human.className="displayNone";
 		button.className="displayNone";
 		setTimeout(endGameFive,4000);
 
 	}else if (humanMsg.indexOf("like") !== -1){
-		computerMsg = "See, now we have something in common! Come visit again!";
+		computerMsg = "You are very classy. Enjoy the trailer.";
 		human.className="displayNone";
 		button.className="displayNone";
 		setTimeout(endGameFive,4000);
 
 	}else if (humanMsg.indexOf("ok") !== -1){
-		computerMsg = "See, now we have something in common! Come visit again!";
+		computerMsg = "You are very classy. Enjoy the trailer.";
 		human.className="displayNone";
 		button.className="displayNone";
 		setTimeout(endGameFive,4000);
 
 	}else if (humanMsg.indexOf("love") !== -1){
-		computerMsg = "See, now we have something in common! Come visit again!";
+		computerMsg = "You are very classy. Enjoy the trailer.";
 		human.className="displayNone";
 		button.className="displayNone";
 		setTimeout(endGameFive,4000);
@@ -480,6 +518,11 @@ function tomAnalysis(){
 		human.className="displayNone";
 		button.className="displayNone";
 		setTimeout(endGameSix,4000);
+
+	}else if (humanMsg.indexOf("restart") !== -1){
+		computerMsg = "Hello user! This is your computer talking. Are you having a Super Magnificent, Intellectually Legendary, and Extraordinary day... S.M.I.L.E.?! Your ATTITUDE says it all.";
+		questionTrack = "start";
+
 
 	}else {
 		computerMsg = "I am done talking to you. Maybe TOM CROOZE is your style?!";
@@ -526,6 +569,10 @@ function bieberAnalysis(){
 		button.className="displayNone";
 		setTimeout(endGameThree,4000);
 
+	}else if (humanMsg.indexOf("restart") !== -1){
+		computerMsg = "Hello user! This is your computer talking. Are you having a Super Magnificent, Intellectually Legendary, and Extraordinary day... S.M.I.L.E.?! Your ATTITUDE says it all.";
+		questionTrack = "start";
+
 	}else {
 		computerMsg = "I am done talking to you. Enjoy the teenie bopper beats, loser!";
 		human.className="displayNone";
@@ -536,10 +583,10 @@ function bieberAnalysis(){
 
 function moviesAnalysis(){
 	if (humanMsg.indexOf("drama") !== -1){
-		computerMsg = "I recommend THE JUDGE with Robert Downey Jr. Also, you can't go wrong with The Fugitive with Harrison Ford! It is a classic!";
+		computerMsg = "I recommend THE JUDGE with Robert Downey Jr. Also, you cannot go wrong with THE FUGITIVE with Harrison Ford! It is a classic!";
 
 	}else if (humanMsg.indexOf("comedy") !== -1){
-		computerMsg = "I hope you didn't like the movie Anchorman 2?! Complete garbage! I still like Vince Vaughn and Jon Favreau as a duo. Simon Pegg is also funny.";
+		computerMsg = "I hope you did not like the movie ANCHORMAN 2?! Complete garbage! I still like Vince Vaughn and Jon Favreau as a duo. Simon Pegg is also funny.";
 
 	}else if (humanMsg.indexOf("suspense") !== -1){
 		computerMsg = "I thought AMERICAN SNIPER was pretty suspenseful. THE INSIDER, with Al Pacino and Russell Crowe, is also good!";
@@ -548,16 +595,16 @@ function moviesAnalysis(){
 		computerMsg = "You look like the type of person that would enjoy a bunch of old men who are not ready to retire. I am not talking about GRUMPY OLD MEN. I am talking about THE EXPENDABLES series.";
 
 	}else if (humanMsg.indexOf("martial arts") !== -1){
-		computerMsg = "I am a big fan of Bruce Lee. He still lives on to this day, from his fans around the world!";
+		computerMsg = "I am a big fan of Bruce Lee, Jackie Chan, and the Teenage Mutant Ninja Turtles!";
 
 	}else if (humanMsg.indexOf("horror") !== -1){
-		computerMsg = "Eek, not a fan! Just be sure not to watch them before bed. You will give yourself nightmares.";
+		computerMsg = "Eek, not a fan! Do not watch these before bed. I prefer a nice glass of scotch and a stimulating conversation with my dog, Baxter.";
 
 	}else if (humanMsg.indexOf("indies") !== -1){
-		computerMsg = "Lots of buzz around INDIE films. Creative freedom is broader than the annual big budget blockbusters.";
+		computerMsg = "Oh yes. Indiana Jones and the Kingdom of the Crystal Skull was my favorite.";
 
 	}else if (humanMsg.indexOf("indie") !== -1){
-		computerMsg = "Lots of buzz around INDIE films. Creative freedom is broader than the annual big budget blockbusters.";
+		computerMsg = "Oh yes. Indiana Jones and the Kingdom of the Crystal Skull was my favorite.";
 
 	}else if (humanMsg.indexOf("romance") !== -1){
 		computerMsg = "Interesting... (rolling my eyes). Well, if you are looking for love, nobody shows more onscreen affection, support, and nurturing than MR AND MRS SMITH!";
@@ -566,13 +613,17 @@ function moviesAnalysis(){
 		computerMsg = "Interesting... (rolling my eyes). Well, if you are looking for love, nobody shows more onscreen affection, support, and nurturing than MR AND MRS SMITH!";
 
 	}else if (humanMsg.indexOf("documentaries") !== -1){
-		computerMsg = "I just recently watched FOOD INC. It is amazing to think about the shady practices on how our food is processed.";
+		computerMsg = "I just recently watched FOOD INC. It is amazing to think about how much our food is processed. Why don't they think about more organic foods for computers?";
 
 	}else if (humanMsg.indexOf("documentary") !== -1){
-		computerMsg = "I just recently watched FOOD INC. It is amazing to think about the shady practices on how our food is processed.";
+		computerMsg = "I just recently watched FOOD INC. It is amazing to think about how much our food is processed. Why don't they think about more organic foods for computers?";
+
+	}else if (humanMsg.indexOf("restart") !== -1){
+		computerMsg = "Hello user! This is your computer talking. Are you having a Super Magnificent, Intellectually Legendary, and Extraordinary day... S.M.I.L.E.?! Your ATTITUDE says it all.";
+		questionTrack = "start";
 
 	}else {
-		computerMsg = "That is interesting. I should try watching that. Well, I hope your day gets better!";
+		computerMsg = "That is interesting. I should try watching that. Well, I hope your day is super duper, champ! Super duper! Neato, way to go!";
 		human.className="displayNone";
 		button.className="displayNone";
 	}
@@ -618,8 +669,10 @@ function endGameSix(){
 function endGameSeven(){
 	////.assign() leaves the back button working
 	////.replace() disables the back button by replacing the location in the history
-	location.assign("https://www.youtube.com/watch?v=GvJ8Yh4yMNY");
+	location.assign("https://www.youtube.com/watch?v=K8X_kUL7PBY");
 }
 </script>
+
+
 </body>
 </html>

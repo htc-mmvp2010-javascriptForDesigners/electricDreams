@@ -1,21 +1,196 @@
+
 <!DOCTYPE html>
 <html>
+<link href="style.css" rel="stylesheet" />
 <head>
-	<title>Electric Dreams</title>
+	<title>One or The Other</title>
 
 	<style type="text/css">
 	/*style the computer text, input, and button*/
 	</style>
 </head>
 <body>
-<h1>Electric Dreams</h1>
-<p id = "computer">Hi, how are you today?</p>
+<h1>Ghost or Elf</h1>
+<p id = "computer">Ghosts or Elf?</p>
 <input id = "human" type = "text" placeholder = "Type your response...">
 <button>Enter</button>
 
 <script type="text/javascript">
 //your script here
+//There are three common methods to gain access (control) of markup elements
+//We have used querySelector
+var computer = document.querySelector('#computer');
+//without modifying the markup finish the next 2 var statements	
+var human = document.getElementById('human');
+var button = document.getElementsByTagName('button')[0];
+//other vars we will use in the next step
+var responseNumber;//used to store the value of the response to display to the player
+var newResponse;//used to generate the next response and prevent duplication of responses
+var humanMsg = "";//will hold the text (value) of the player input
+var computerMsg = "";//will hold the computer text displayed to the player each turn
+//new//
+var questionTrack = "start";
+var genericResponses = [
+	"You are a loser.",
+	"STOP TALKING",
+	"I like you."
+];//will be populated with messages to respond to the player
+//make the human input the focus when the page loads
+human.focus();
+button.addEventListener("click",clickHandler,false);
+function clickHandler(){
+	playGame();
+}
+window.addEventListener("keydown",keydownHandler,false);
+function keydownHandler(event){
+	if (event.keyCode===13) {
+		playGame();
+	}
+}
+function playGame() {
+	//let the games begin
+	// //version4
+	// humanMsg = (human.value).toLowerCase();
+	// if (humanMsg.indexOf("good") !== -1){
+	// 	computerMsg = "That is good for you.";
+	// }else if (humanMsg.indexOf("bad") !== -1){
+	// 	computerMsg = "You live a sad life.";
+	// }else {
+	// 	computerMsg = "You know nothing.";
+	// }
+	// computer.innerHTML = computerMsg;
+// //version5
+	//switch questionTrack (gameState type thing)
+	humanMsg = (human.value).toLowerCase();
+	switch (questionTrack) {
+		case "start":
+		firstAnalysis();
+		break;
+		case "casper":
+		casperAnalysis();
+		break;
+		case "rings":
+		ringsAnalysis();
+		break;
+		case "wendy":
+		wendyAnalysis();
+		break;
+		case "elfOwner":
+		elfOwnerAnalysis();
+		break;
+		case "candy":
+		candyAnalysis();
+		break;
+		case "elf":
+		elfAnalysis();
+		break;
+		default:
+		genericResponse();
+		break;
+	}
+	computer.innerHTML = computerMsg;
+	////////////////////////
+	//3. wipe the text in the player input field 
+	human.value = "";
+}
+function genericResponse(){
+		// //version3
+	if (genericResponses.length >0){
+		newResponse = Math.floor(Math.random()*genericResponses.length);
+		responseNumber = newResponse;
+		computerMsg = genericResponses[responseNumber];
+		genericResponses.splice(responseNumber,1);
+	} else {
+		computerMsg = "I am done talking to you. You may leave now.";
+		human.className="displayNone";
+		button.className="displayNone";
+		setTimeout(endGame,2000);
+	}
+}
+function firstAnalysis(){
+	if (humanMsg.indexOf("ghosts") !== -1){
+		computerMsg = "Have you ever seen casper?";
+		questionTrack = "casper";
+	}else if (humanMsg.indexOf("elf") !== -1){
+		computerMsg = "Have you seen Lord of The Rings";
+		questionTrack = "rings";
+	}else {
+		genericResponse();
+	}
+}
+function casperAnalysis(){
+	if (humanMsg.indexOf("yes") !== -1){
+		computerMsg = "Have you ever seen Casper Meets Wendy?";
+		questionTrack = "wendy";
+	}else if (humanMsg.indexOf("no") !== -1){
+		computerMsg = "What kind of sick childhood did you have?";
+		questionTrack = "start";
+	}else {
+		genericResponse();
+	}
+}
+function ringsAnalysis(){
+	if (humanMsg.indexOf("yes") !== -1){
+		computerMsg = "Does this mean you have a thing for elves?";
+		questionTrack = "elves";
+	}else if (humanMsg.indexOf("no") !== -1){
+		computerMsg = "Wow, do you have a life?";
+		questionTrack = "start";
+	}else {
+		genericResponse();
+	}
+}
+function wendyAnalysis(){
+	if (humanMsg.indexOf("yes") !== -1){
+		computerMsg = "Do you want to be a ghost?";
+		questionTrack = "candy";
+	}else if (humanMsg.indexOf("no") !== -1){
+		computerMsg = "Then you must be a reptile person. Do you like snakes?";
+		questionTrack = "start";
+	}else {
+		genericResponse();
+	}
+}
+function elfOwnerAnalysis(){
+	if (humanMsg.indexOf("yes") !== -1){
+		computerMsg = "Do you want to be an elf?";
+		questionTrack = "candy";
+	}else if (humanMsg.indexOf("no") !== -1){
+		computerMsg = "I think you would be a pretty elf";
+		questionTrack = "start";
+	}else {
+		genericResponse();
+	}
+}
 
+function candyAnalysis(){
+	if (humanMsg.indexOf("yes") !== -1){
+		computerMsg = "Good lets rot your teeth and make you into a ghost";
+		questionTrack = "start";
+	}else if (humanMsg.indexOf("no") !== -1){
+		computerMsg = "What kind of human are you?!";
+		questionTrack = "start";
+	}else {
+		genericResponse();
+	}
+
+function elfOwnerAnalysis(){
+	if (humanMsg.indexOf("yes") !== -1){
+		computerMsg = "Well go buy a costume then, duh.";
+		questionTrack = "start";
+	}else if (humanMsg.indexOf("no") !== -1){
+		computerMsg = "You bore me.";
+		questionTrack = "start";
+	}else {
+		genericResponse();
+	}
+}
+}
+function endGame(){
+	////.assign() leaves the back button working
+	////.replace() disables the back button by replacing the location in the history
+	location.assign("http://en.wikipedia.org/wiki/Electric_Dreams_(film)");
+}
 </script>
 </body>
 </html>
